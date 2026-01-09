@@ -18,4 +18,4 @@
 4. Hace el pedido
 
 ## Captura de pantalla
-![Carrito](https://cdn.pixabay.com/photo/2016/11/29/05/08/cart-1867754_1280.jpg)
+![Carrito](./img/carrito.png)

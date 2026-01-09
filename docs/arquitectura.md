@@ -1,7 +1,7 @@
 # Arquitectura
 
 ## Diagrama
-![Arquitectura](https://cdn.pixabay.com/photo/2013/07/13/11/50/network-158603_1280.png)
+![Arquitectura](./img/red.png)
 
 ## Explicación técnica
 La aplicación funciona mediante una arquitectura *cliente-servidor*:
