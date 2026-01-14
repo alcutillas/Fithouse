@@ -12,6 +12,18 @@ require_once("templates/header.php");
                 FitHouse – Donde la pasión por el deporte se convierte en estilo de vida.</p>
         </div>
     </div>
+    <section id="cuerpo-presentacion">
+        <a href=""><button></button></a>
+    <div>
+        <h2>Marcas con las que trabajamos</h2>
+    </div>
+    <div>
+        <h2>Ofertas</h2>
+    </div>
+    <div>
+        <h2>Recomendaciones</h2>
+    </div>
+    </section>
 </main>
 
 <?php

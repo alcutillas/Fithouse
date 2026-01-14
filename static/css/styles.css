@@ -1,0 +1,127 @@
+@font-face {
+    font-family: "Raleway";
+    src: url(../fonts/DM_Sans/static/DMSans-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "Raleway";
+}
+
+/*==========Header============*/
+
+header{
+    background: linear-gradient(
+        42deg,
+        rgb(0, 0, 0) 0 80px,
+        rgb(255, 196, 0) 88px 100%
+    );
+    display: flex;
+    justify-content: space-between;
+}
+
+header ul{
+    list-style: none;
+}
+
+header ul>li{
+    float: left;
+    padding: 12px 0;
+    margin: 0 11px;
+}
+
+/*============Footer================*/
+
+
+footer{
+    background-color: rgb(75, 75, 75);
+    color: rgb(255, 196, 0);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding: 10px;
+    grid-template-areas: 
+    ". . ."
+    "redes redes redes";
+    grid-gap: 15px;
+}
+
+footer > section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    
+}
+
+footer > section > table{
+    text-align: center;
+}
+
+footer > #section-ubicacion{
+    flex-direction: row;
+}
+
+footer a{
+    color: rgb(255, 196, 0);
+}
+
+footer > #section-redes{
+    grid-area: redes;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 10px;
+    text-align: center;
+}
+footer > #section-redes > a > i{font-size: 40px;}
+
+#avisos-legales{
+    display: inline;
+    grid-column: 1/-1;
+    text-align: center;
+    color: white;
+}
+#avisos-legales > *{
+    color: rgb(255, 255, 255);
+    font-size: small;
+}
+
+#avisos-legales > p{
+    font-size: 10px;
+    padding: 2px;
+}
+
+/*==============Cabecera-Main-Presentacion====================*/
+
+#fondo-informacion{
+    background-image: url("../img/fondo-index.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 200px 0px 200px 100px;
+    transition: 0.3s ease;
+}
+
+#fondo-informacion:hover{
+    box-shadow: 0 0 30px inset  rgb(255, 196, 0);
+}
+
+#fondo-informacion div{
+    width: 50%;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgb(255, 255, 255);
+}
+
+/*===================Main-Presentacion========================*/
+
+#cuerpo-presentacion{
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
