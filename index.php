@@ -13,7 +13,6 @@ require_once("templates/header.php");
         </div>
     </div>
     <section id="cuerpo-presentacion">
-        <a href=""><button></button></a>
     <div>
         <h2>Marcas con las que trabajamos</h2>
     </div>

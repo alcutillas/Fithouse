@@ -21,8 +21,8 @@
         <i class="fa-solid fa-location-dot"></i><div>Calle Alicante 13<br>San Vicente del Raspeig 03690</div>
     </section>
     <section id="section-redes">
-        <a href="https://www.instagram.com/fithouse.sanvi?igsh=ZHo4eDYyem16ZnNs"><i class="fa-brands fa-instagram"></i><br>fithouse.sanvi</a>
-        <a href="https://www.tiktok.com/@fithouse.sanvi?_r=1&_t=ZN-933rbdi2pBG"><i class="fa-brands fa-tiktok"></i><br>fithouse.sanvi</a>
+        <a href="https://www.instagram.com/fithouse.sanvi"><i class=" redes fa-brands fa-instagram"></i><br>fithouse.sanvi</a>
+        <a href="https://www.tiktok.com/@fithouse.sanvi"><i class=" redes fa-brands fa-tiktok"></i><br>fithouse.sanvi</a>
     </section>
     <footer id="avisos-legales">
         <a href="./legal/avisoLegal.html">Avisos Legales</a> | <a href="./legal/politicaCookies.html">Política de Cookies</a> | <a href="./legal/politicaPrivacidad.html">Política de Privacidad</a><br>

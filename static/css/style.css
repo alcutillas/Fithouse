@@ -78,7 +78,11 @@ footer > #section-redes{
     font-size: 10px;
     text-align: center;
 }
-footer > #section-redes > a > i{font-size: 40px;}
+
+.redes{
+    font-size: 40px;
+    color: rgb(255, 196, 0);
+}
 
 #avisos-legales{
     display: inline;
