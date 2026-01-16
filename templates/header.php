@@ -12,6 +12,7 @@
     <header>
         <a href="index.php"><img src="static/img/logo-indice.png" width="55px" height="40px"></a>
         <ul>
+            <li><a href="cuestionario-plan-nutricional/cuestionario.html">Cuestionario</a></li>
             <li>Acerca de</li>
             <li>Catálogo</li>
             <li>Pedidos</li>
