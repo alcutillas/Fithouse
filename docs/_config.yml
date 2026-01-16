@@ -1,0 +1,7 @@
+title: Mi proyecto
+description: Documentación del proyecto Fithouse
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+show_downloads: false
+markdown: kramdown
