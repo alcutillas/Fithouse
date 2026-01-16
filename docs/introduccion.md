@@ -1,4 +1,7 @@
-# Introducción
+---
+title: Introducción
+nav_order: 1
+---
 
 ## Objetivo del proyecto
 El objetivo de este proyecto es crear una **tienda web de suplementación deportiva** que permita a los usuarios comprar productos como *proteínas*, *creatina* y *vitaminas* de forma rápida y segura.

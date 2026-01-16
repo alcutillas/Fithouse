@@ -1,6 +1,7 @@
-
 ---
-# Uso
+title: Uso
+nav_order: 3
+---
 
 ## Usuarios tipo
 

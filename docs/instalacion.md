@@ -1,4 +1,8 @@
-# Instalación
+---
+title: Instalación
+nav_order: 3
+---
+
 
 ## Requisitos
 Para ejecutar la tienda necesitas:

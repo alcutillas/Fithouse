@@ -1,4 +1,8 @@
-# Fithouse  
+---
+title: Inicio
+nav_order: 7
+---
+
 ### Documentación del Proyecto
 
 ---

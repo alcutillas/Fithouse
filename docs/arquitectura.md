@@ -1,4 +1,8 @@
-# Arquitectura
+---
+title: Arquitectura
+nav_order: 2
+---
+
 
 ## Diagrama
 ![Arquitectura](./img/red.png)

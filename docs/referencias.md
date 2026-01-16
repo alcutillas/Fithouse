@@ -1,4 +1,7 @@
-# Conclusiones
+---
+title: Referencias
+nav_order: 6
+---
 
 ## Dificultades
 - Configurar pagos
