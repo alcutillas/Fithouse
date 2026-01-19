@@ -1,0 +1,86 @@
+/* === GENERAL === */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+
+        /* === CONTENEDOR PRINCIPAL === */
+        .acerca-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        /* === BLOQUES DE SECCIÓN === */
+        .bloque {
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+            align-items: center;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .bloque:hover {
+            transform: scale(1.01);
+        }
+
+        .bloque.invertido {
+            flex-direction: row-reverse;
+        }
+
+        .seccion-en-fila-derecha, .seccion-en-fila-izquierda{
+            justify-content: space-between;
+        }
+        .seccion-en-fila-izquierda{
+            flex-direction: row-reverse;
+        }
+
+        /* === TEXTO === */
+        .bloque .texto {
+            padding: 30px;
+        }
+        .seccion-en-fila-izquierda > .texto, .seccion-en-fila-derecha > .texto{
+            width: 60%;
+        }
+
+        .bloque .texto h1,
+        .bloque .texto h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #222;
+            border-left: 6px solid #fdd835;
+            padding-left: 12px;
+        }
+
+        .bloque .texto p {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* === IMAGEN === */
+        .bloque .imagen {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .bloque .imagen img {
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* === TOQUES DIVERTIDOS === */
+        .bloque:nth-child(even) {
+            background-color: #fffde7;
+        }
+
+        .bloque:nth-child(odd) {
+            background-color: #ffffff;
+        }

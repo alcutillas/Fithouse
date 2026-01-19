@@ -1,3 +1,108 @@
-body{
-    background-color: red;
+/* Estilo general */
+body {
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Texto introductorio */
+main div p {
+    line-height: 1.5;
+    color: #444;
+}
+
+/* Fieldsets */
+fieldset {
+    margin-top: 25px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 8px;
+    color: #333;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="mail"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+    margin-top: 10px;
+}
+
+.btn-enviar {
+    margin-top: 20px;
+      width: 100%;
+  background-color: rgb(255, 196, 0);     
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-enviar:hover {
+  background-color: rgb(255, 199, 15);     
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Espaciado entre opciones */
+fieldset br {
+    margin-bottom: 8px;
+}
+
+/* Botón (si luego lo añades) */
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+#informacion-cuestionario-plan-nutricional{
+    font-size: smaller;
 }
