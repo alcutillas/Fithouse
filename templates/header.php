@@ -17,8 +17,13 @@
         ?>
         <link rel="stylesheet" href="static/css/acercade.css">
     <?php
+    }else if($css == "contacto"){
+        ?>
+        <link rel="stylesheet" href="static/css/contacto.css">
+    <?php
     }}
     ?>
+    
 
 
 </head>
@@ -37,7 +42,7 @@
                 <li><a href="cuestionario.php">Cuestionario</a></li>
             </ul>
         </li>
-        <li><a>Contacto</a></li>
+        <li><a href="contacto.php">Contacto</a></li>
         <li><a><i class="fa-solid fa-cart-shopping"></i></a></li>
         <li><a><i class="fa-regular fa-user"></i></a></li>
         </ul>
