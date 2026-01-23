@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabecera</title>
     <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="static/css/stylo.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/js/jquery.min.js"></script>
     <?php
     if (isset($css)) {
        if($css == "cuestionario-plan-nutricional"){
@@ -21,10 +22,13 @@
         ?>
         <link rel="stylesheet" href="static/css/contacto.css">
     <?php
+    }else if($css == "index"){
+        ?>
+        <link rel="stylesheet" href="static/css/swiper-bundle.min.css">
+        <script src="static/js/swiper-bundle.min.js"></script>
+    <?php
     }}
     ?>
-    
-
 
 </head>
 

@@ -81,7 +81,7 @@ header li{
 
 
 footer{
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(0, 0, 0);
     color: rgb(255, 196, 0);
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -171,4 +171,8 @@ footer > #section-redes{
     width: 80%;
     margin: 20px auto;
     text-align: center;
+}
+
+.swiper-slide img{
+    margin-bottom: 30px;
 }
