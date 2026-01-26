@@ -17,8 +17,8 @@ require_once("templates/header.php");
             </div>
 
             <div class="imagen">
-                <!-- Imagen del equipo joven -->
-                <img src="https://www.tudn.com/_next/image?url=https%3A%2F%2Fst1.uvnimg.com%2F4b%2Fbd%2Fbef6e2c543288057c3a6560da5dc%2Fgettyimages-962792726.jpg&w=1280&q=75" alt="Equipo de la tienda">
+                <!-- Imagen del equipo -->
+                <img src="./static/img/fondo-index.jpg" alt="Equipo de la tienda">
             </div>
         </section>
 
@@ -26,7 +26,7 @@ require_once("templates/header.php");
         <section class="bloque invertido seccion-en-fila-derecha">
             <div class="imagen">
                 <!-- Imagen de nutricionistas hombre y mujer -->
-                <img src="https://assets.goal.com/images/v3/blt2aaca933046f8b00/Cristiano%20Ronaldo%20Portugal%202024%20(4).jpg?auto=webp&format=pjpg&width=3840&quality=60" alt="Nutricionistas del equipo">
+                <img src="./static/img/fondo-index.jpg" alt="Nutricionistas del equipo">
             </div>
 
             <div class="texto">
@@ -52,15 +52,15 @@ require_once("templates/header.php");
 
             <div class="imagen">
                 <!-- Imagen de pedidos / recogida en tienda -->
-                <img src="https://ravelodeporte.es/wp-content/uploads/2020/04/Cristianovirus-300x225.jpg" alt="Pedidos y recogida en tienda">
+                <img src="./static/img/fondo-index.jpg" alt="Pedidos y recogida en tienda">
             </div>
         </section>
 
         <!-- SECCIÓN 4: ASESORAMIENTO PERSONALIZADO -->
         <section class="bloque invertido">
             <div class="imagen">
-                <!-- Imagen del cuestionario o asesoramiento -->
-                <img src="https://cdn0.celebritax.com/sites/default/files/styles/watermark_100/public/1603995911-cristiano-ronaldo-dice-siente-bien-saludable-tras-dar-positivo-otra-vez-coronavirus.jpg" alt="Cuestionario de asesoramiento">
+                <!-- Imagen del asesoramiento -->
+                <img src="./static/img/fondo-index.jpg" alt="Cuestionario de asesoramiento">
             </div>
 
             <div class="texto">
@@ -88,8 +88,8 @@ require_once("templates/header.php");
         <!-- SECCIÓN 6: PRECIOS Y MARCAS -->
         <section class="bloque invertido">
             <div class="imagen">
-                <!-- Imagen de marcas o productos variados -->
-                <img src="https://media.c5n.com/p/e312651a0e7abedb0cd1eda9fb5e7c95/adjuntos/326/imagenes/000/339/0000339027/790x0/smart/cristiano-ronaldo-joven.jpg" alt="Variedad de marcas">
+                <!-- Imagen de marcas o productos -->
+                <img src="./static/img/fondo-index.jpg" alt="Variedad de marcas">
             </div>
 
             <div class="texto">
