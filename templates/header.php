@@ -7,10 +7,7 @@
     <title>Cabecera</title>
     <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="static/css/style.css">
-<<<<<<< HEAD
-    <script src="static/js/jquery.min.js"></script>
-=======
->>>>>>> f1fe50e7789390626c14dd46e11605491fe94783
+
     <?php
     if (isset($css)) {
        if($css == "cuestionario-plan-nutricional"){
@@ -30,8 +27,14 @@
         <link rel="stylesheet" href="static/css/swiper-bundle.min.css">
         <script src="static/js/swiper-bundle.min.js"></script>
     <?php
+    }else if($css == "registro"){
+        ?>
+        <link rel="stylesheet" href="static/css/registro.css">
+    <?php
     }}
     ?>
+
+  
 
 </head>
 

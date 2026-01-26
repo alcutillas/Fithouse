@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+}
+
+main > div{
+    margin: 30px auto;
+    width: 400px;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  background: #f2f2f2;
+  font-size: 14px;
+}
+
+form textarea {
+  height: 120px;
+  resize: none;
+}
+
+form button {
+    margin-top: 20px;
+      width: 100%;
+  background-color: rgb(255, 196, 0);     
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+form button:hover {
+  background-color: rgb(255, 199, 15);     
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
