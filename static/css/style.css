@@ -143,6 +143,22 @@ footer > #section-redes{
     padding: 2px;
 }
 
+@media screen and (max-width:768px) {
+    footer{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        
+    }
+    footer *{
+        font-size: large;
+    }
+    #avisos-legales > *,#avisos-legales > p{
+    font-size: 20px;
+    }
+    
+}
+
 /*==============Cabecera-Main-Presentacion====================*/
 
 #fondo-informacion{
@@ -151,7 +167,7 @@ footer > #section-redes{
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    padding: 200px 0px 200px 100px;
+    padding: 300px 0px 300px 100px;
     transition: 0.3s ease;
 }
 
@@ -163,6 +179,31 @@ footer > #section-redes{
     width: 50%;
     text-align: center;
     text-shadow: 1px 1px 3px rgb(255, 255, 255);
+    font-size: large;
+}
+
+@media screen and (max-width:1165px) {
+    #fondo-informacion{
+        background-image: url("../img/fondo-index-tablet.png");
+        padding: 100px 0 650px 0;
+        display: flex;
+        justify-content: center;
+    }
+    #fondo-informacion div{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #fondo-informacion{
+        background-image: url("../img/fondo-index-movil.png");
+        padding: 100px 0 550px 0;
+    }
+}
+@media screen and (max-width:600px){
+    #fondo-informacion{
+        padding: 50px 0 400px 0;
+    }
 }
 
 /*===================Main-Presentacion========================*/
@@ -175,4 +216,5 @@ footer > #section-redes{
 
 .swiper-slide img{
     margin-bottom: 30px;
+    width: 300px !important;
 }
