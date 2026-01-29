@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabecera</title>
-    <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
+      <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="static/css/stylo.css">
 
     <?php
     if (isset($css)) {
@@ -25,7 +25,7 @@
     }else if($css == "index"){
         ?>
         <link rel="stylesheet" href="static/css/swiper-bundle.min.css">
-        <script src="static/js/swiper-bundle.min.js"></script>
+        <script src="./static/js/swiper-bundle.min.js"></script>
     <?php
     }else if($css == "registro"){
         ?>
@@ -33,8 +33,6 @@
     <?php
     }}
     ?>
-
-  
 
 </head>
 
