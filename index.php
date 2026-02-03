@@ -36,7 +36,7 @@ require_once("templates/header.php");
     <script>
       const swiper = new Swiper('.swiper', {
         loop: true,
-        autoplay: { delay: 1500 },
+        autoplay: { delay: 2000 },
         pagination: { el: '.swiper-pagination' }
       });
     </script>

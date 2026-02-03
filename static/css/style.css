@@ -75,6 +75,83 @@ header li{
     background-color: rgb(255, 196, 0);
 }
 
+#hamburguesa {
+    display: none;
+    font-size: 26px;
+    padding: 12px;
+    color: black !important;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+
+    #hamburguesa {
+        display: block;
+        font-size: 26px;
+        color: white;
+        padding: 12px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    header {
+        position: relative;
+    }
+
+    header ul {
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.86);
+        position: absolute;
+        top: 57px;
+        left: 0;
+
+        /* ANIMACIÓN */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
+    }
+
+    header > ul >li > a:hover{
+        background-color: rgba(27, 27, 27, 0.758);
+    }
+
+    header ul li {
+        text-align: center;
+        width: 100%;
+    }
+
+    header ul li a {
+        display: block;
+        padding: 15px;
+        color:  rgb(255, 196, 0);
+        font-size: 26px;
+    }
+
+    /* MENÚ ABIERTO */
+    #menu:checked ~ header ul {
+        max-height: 500px; /* suficiente para todos los items */
+        opacity: 1;
+    }
+
+    /* Desactivar hover del submenú en móvil */
+    .submenu {
+        position: static;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .desplegable:hover .submenu {
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
+
+
 
 
 /*============Footer================*/
