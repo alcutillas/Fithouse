@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabecera</title>
       <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="static/css/stylo.css">
+    <link rel="stylesheet" href="static/css/style.css">
 
     <?php
     if (isset($css)) {
@@ -37,28 +37,39 @@
 </head>
 
 <body>
-    <header>
-        
-        <a href="index.php" id="logo-menu"><img src="static/img/logo-indice.png" width="55px" height="40px"></a>
-        <ul>
-        
+<input type="checkbox" id="menu" hidden>
+
+<header>
+
+    <a href="index.php" id="logo-menu">
+        <img src="static/img/logo-indice.png" width="55" height="40">
+    </a>
+
+    <label id="hamburguesa" for="menu">
+        <i class="fa-solid fa-bars"></i>
+    </label>
+
+    <ul>
         <li><a href="acercade.php">Acerca de</a></li>
         <li><a>Catálogo</a></li>
         <li><a>Pedidos</a></li>
-        <li class="desplegable"><a>Asesoramiento</a>
+        <li class="desplegable">
+            <a>Asesoramiento</a>
             <ul class="submenu">
                 <li><a href="cuestionario.php">Cuestionario</a></li>
             </ul>
         </li>
         <li><a href="contacto.php">Contacto</a></li>
         <li><a><i class="fa-solid fa-cart-shopping"></i></a></li>
+
         <li class="desplegable"><a><i class="fa-regular fa-user"></i></a>
             <ul class="submenu submenu2">
                 <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
                 <li><a href="registrar.php">Registrarse</a></li>
             </ul>
         </li>
-        
-        </ul>
+    </ul>
 
-    </header>
+</header>
+
+
