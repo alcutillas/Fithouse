@@ -52,7 +52,13 @@
         </li>
         <li><a href="contacto.php">Contacto</a></li>
         <li><a><i class="fa-solid fa-cart-shopping"></i></a></li>
-        <li><a><i class="fa-regular fa-user"></i></a></li>
+        <li class="desplegable"><a><i class="fa-regular fa-user"></i></a>
+            <ul class="submenu submenu2">
+                <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
+                <li><a href="registrar.php">Registrarse</a></li>
+            </ul>
+        </li>
+        
         </ul>
 
     </header>
