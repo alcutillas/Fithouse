@@ -1,3 +1,7 @@
+<?php
+require_once("conexion.php");
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,6 +54,13 @@
     </label>
 
     <ul>
+        <?php
+            if(!empty($_SESSION) && $_SESSION["rol"] == "admin"){
+                ?>
+                <li><a href="administrador.php">Panel Control</a></li>
+                <?php
+            }
+        ?>
         <li><a href="acercade.php">Acerca de</a></li>
         <li><a>Catálogo</a></li>
         <li><a>Pedidos</a></li>
@@ -63,10 +74,22 @@
         <li><a><i class="fa-solid fa-cart-shopping"></i></a></li>
 
         <li class="desplegable"><a><i class="fa-regular fa-user"></i></a>
+        <?php
+        if(empty($_SESSION)){
+        ?>
             <ul class="submenu submenu2">
                 <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
                 <li><a href="registrar.php">Registrarse</a></li>
             </ul>
+            <?php
+        }else{
+            ?>
+            <ul class="submenu submenu2">
+                <li><a href="logout.php">Cerrar Sesión</a></li>
+            </ul>
+            <?php
+        }
+            ?>
         </li>
     </ul>
 

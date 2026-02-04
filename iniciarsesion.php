@@ -1,31 +1,27 @@
 <?php
-session_start();
-
-if (isset($_SESSION['usuario'])) {
-    header("Location: index.php.php");
-    exit();
-}
-
-$error = '';
-
-// Comprobamos si se envió el formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $mail = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    // Para simplificar, usuario/admin con contraseña fija
-    // Más adelante se puede hacer con tabla de usuarios en BD
-    if ($mail === '' && $password === '') {
-        $_SESSION['usuario'] = $mail;
-        $_SESSION['rol'] = 'cliente';        
-        header("Location: index.php");
-        exit();
-    } else {
-        $error = "Usuario o contraseña incorrectos.";
-    }
-}
 $css = "registro";
 require_once("templates/header.php");
+require_once("funciones.php");
+
+if (isset($_POST['email'])) {
+
+    if($_POST['email'] == 'fit.housesanvi@gmail.com'){
+      $_SESSION['rol'] = 'admin';
+      header("Location: administrador.php");
+      exit();
+    }
+
+    $usuarios = usuarios($conexion);
+  foreach($usuarios as $u){
+    if($u["correo_electronico"] == $_POST["email"]){
+      header("Location: index.php");
+      exit();
+    }
+  }
+  header("Location:registrar.php");
+}
+
+
 ?>
 
 <main>

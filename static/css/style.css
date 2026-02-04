@@ -140,11 +140,20 @@ header li{
 
     /* Desactivar hover del submenú en móvil */
     .submenu {
+        background-color: rgba(27, 27, 27, 0.758);
         position: static;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
         transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+    .submenu > li > a:hover{
+        width: 100%;
+        background-color: rgba(27, 27, 27, 0.758);
+    }
+
+    .submenu li a{
+        color: rgb(255, 196, 0);
     }
 
     .desplegable:hover .submenu {
