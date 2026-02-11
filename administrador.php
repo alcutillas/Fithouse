@@ -1,6 +1,8 @@
 <?php
 require_once("templates/header.php");
-echo $_SESSION["rol"];
+if($_SESSION["rol"] != "admin"){
+    header("Location:index.php");
+}
 ?>
 
 <?php

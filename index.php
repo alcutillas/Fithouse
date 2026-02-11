@@ -1,11 +1,6 @@
 <?php
 $css = "index";
 require_once("templates/header.php");
-if(empty($_SESSION)){
-  echo "Aun no se ha iniciado sesion";
-}else{
-  echo $_SESSION["rol"];
-}
 ?>
 
 <main>

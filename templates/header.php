@@ -1,5 +1,6 @@
 <?php
 require_once("conexion.php");
+require_once("funciones.php");
 session_start();
 ?>
 <!DOCTYPE html>
@@ -62,7 +63,7 @@ session_start();
             }
         ?>
         <li><a href="acercade.php">Acerca de</a></li>
-        <li><a>Catálogo</a></li>
+        <li><a href="catalogo.php">Catálogo</a></li>
         <li><a>Pedidos</a></li>
         <li class="desplegable">
             <a>Asesoramiento</a>

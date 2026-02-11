@@ -1,7 +1,6 @@
 <?php
 $css = "registro";
 require_once("templates/header.php");
-require_once("funciones.php");
 
 if(isset($_POST["email"])){
   $usuarios = usuarios($conexion);
@@ -43,7 +42,6 @@ if($registrado == false){
         <input type="email" placeholder="Email" name="email" required>
         <input type="password" name="password" placeholder="Contraseña" required>
         <input type="text" placeholder="Teléfono" name="telefono" required>
-        <input type="text" placeholder="Código postal" name="codigopostal" required>
         <button type="submit">Registrarse</button>
       </form>
     </div>
