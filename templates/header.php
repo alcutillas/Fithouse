@@ -11,7 +11,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabecera</title>
       <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/stylo.css">
 
     <?php
     if (isset($css)) {
@@ -42,58 +42,58 @@ session_start();
 </head>
 
 <body>
-<input type="checkbox" id="menu" hidden>
 
 <header>
+    <nav class="navbar">
+        
+        <div class="logo">
+            <a href="index.php" id="logo-menu">
+                <img src="static/img/logo-indice.png" width="55" height="40">
+            </a>
+        </div>
 
-    <a href="index.php" id="logo-menu">
-        <img src="static/img/logo-indice.png" width="55" height="40">
-    </a>
+        <!-- Botón hamburguesa -->
+            <input type="checkbox" name="check" id="check">
+            <label for="check"><i class="fa-solid fa-bars"></i></label>
+        
 
-    <label id="hamburguesa" for="menu">
-        <i class="fa-solid fa-bars"></i>
-    </label>
+        <ul class="nav-menu" id="nav-menu">
 
-    <ul>
-        <?php
-            if(!empty($_SESSION) && $_SESSION["rol"] == "admin"){
-                ?>
-                <li><a href="administrador.php">Panel Control</a></li>
-                <?php
-            }
-        ?>
-        <li><a href="acercade.php">Acerca de</a></li>
-        <li><a href="catalogo.php">Catálogo</a></li>
-        <li><a>Pedidos</a></li>
-        <li class="desplegable">
-            <a>Asesoramiento</a>
-            <ul class="submenu">
-                <li><a href="cuestionario.php">Cuestionario</a></li>
-            </ul>
-        </li>
-        <li><a href="contacto.php">Contacto</a></li>
-        <li><a><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <?php if(isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
+                <li><a href="panel.php">Panel de control</a></li>
+            <?php endif; ?>
 
-        <li class="desplegable"><a><i class="fa-regular fa-user"></i></a>
-        <?php
-        if(empty($_SESSION)){
-        ?>
-            <ul class="submenu submenu2">
-                <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
-                <li><a href="registrar.php">Registrarse</a></li>
-            </ul>
-            <?php
-        }else{
-            ?>
-            <ul class="submenu submenu2">
+            <li><a href="acerca.php">Acerca de</a></li>
+
+            <li><a href="catalogo.php">Catálogo</a></li>
+
+            <li><a href="pedidos.php">Pedidos</a></li>
+
+            <li class="dropdown">
+                <input type="checkbox" name="check2" id="check2">
+                <label for="check2"><a href="#">Asesoramiento</a></label>
+                <ul class="submenu">
+                    <li><a href="cuestionario.php">Cuestionario</a></li>
+                </ul>
+            </li>
+
+            <li><a href="contacto.php">Contacto</a></li>
+
+            <?php if(empty($_SESSION)): ?>
+                <li class="dropdown">
+                    <input type="checkbox" name="check3" id="check3">
+                    <label for="check3"></label><a href="#"><i class="fa fa-user"></i></a>
+                    <ul class="submenu">
+                        <li><a href="login.php">Iniciar Sesión</a></li>
+                        <li><a href="registro.php">Registrarse</a></li>
+                    </ul>
+                </li>
+            <?php else: ?>
                 <li><a href="logout.php">Cerrar Sesión</a></li>
-            </ul>
-            <?php
-        }
-            ?>
-        </li>
-    </ul>
+            <?php endif; ?>
 
+        </ul>
+    </nav>
 </header>
 
 

@@ -1,0 +1,345 @@
+@font-face {
+    font-family: "Raleway";
+    src: url(../fonts/DM_Sans/static/DMSans-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "Raleway";
+}
+
+/*==========Header============*/
+
+header{
+    background: linear-gradient(
+        42deg,
+        rgb(0, 0, 0) 0 80px,
+        rgb(255, 196, 0) 88px 100%
+    );
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/*
+.nav-menu{
+    position: absolute;
+    top: -100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header input:checked ~ .nav-menu{
+    top: 110%;
+}*/
+
+header .navbar > ul {
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.673);
+    position: absolute;
+    top: 49px;
+    left: 0;
+
+    /* ANIMACIÓN */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+
+header ul li:hover{
+    background-color: rgba(57, 59, 42, 0.758);
+}
+
+header ul li {
+    text-align: center;
+    width: 100%;
+}
+
+header ul a {
+    display: block;
+    padding: 15px;
+    color:  rgb(255, 196, 0);
+    font-size: 26px;
+    text-decoration: none;
+}
+
+/* MENÚ ABIERTO */
+#check:checked ~ .nav-menu {
+    max-height: 500px;
+    opacity: 1;
+}
+
+header input{
+    display: none;
+}
+header label{
+    font-size: 30px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.dropdown label{
+    padding: 0;
+}
+
+.dropdown .submenu{
+    display: none;
+    position: relative;
+}
+
+#check2:checked ~ .submenu{
+    display: block;
+}
+
+#check3:checked ~ .submenu{
+    display: block;
+}
+
+
+
+
+/*============Footer================*/
+
+
+footer{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 196, 0);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding: 10px;
+    grid-template-areas: 
+    ". . ."
+    "redes redes redes";
+    grid-gap: 15px;
+}
+
+footer > section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    
+}
+
+footer > section > table{
+    text-align: center;
+}
+
+footer > #section-ubicacion{
+    flex-direction: row;
+}
+
+footer a{
+    color: rgb(255, 196, 0);
+}
+
+footer > #section-redes{
+    grid-area: redes;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.redes{
+    font-size: 40px;
+    color: rgb(255, 196, 0);
+}
+
+#avisos-legales{
+    display: inline;
+    grid-column: 1/-1;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+#avisos-legales > *{
+    color: rgb(255, 255, 255);
+    font-size: small;
+}
+
+#avisos-legales > p{
+    font-size: 10px;
+    padding: 2px;
+}
+
+@media screen and (max-width:768px) {
+    footer{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        
+    }
+    footer *{
+        font-size: large;
+    }
+    #avisos-legales > *,#avisos-legales > p{
+    font-size: 20px;
+    }
+    
+}
+
+/*==============Cabecera-Main-Presentacion====================*/
+
+#fondo-informacion{
+    background-image: url("../img/fondo-index.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 220px 0px 220px 100px;
+    transition: 0.3s ease;
+}
+
+#fondo-informacion p{
+    font-size: 23px;
+}
+
+#fondo-informacion:hover{
+    box-shadow: 0 0 30px inset  rgb(255, 196, 0);
+}
+
+#fondo-informacion div{
+    width: 50%;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgb(255, 255, 255);
+    font-size: large;
+}
+
+@media screen and (max-width:1165px) {
+    #fondo-informacion{
+        background-image: url("../img/fondo-index-tablet.png");
+        padding: 100px 0 650px 0;
+        display: flex;
+        justify-content: center;
+    }
+    #fondo-informacion div{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #fondo-informacion{
+        background-image: url("../img/fondo-index-movil.png");
+        padding: 100px 0 550px 0;
+    }
+}
+@media screen and (max-width:600px){
+    #fondo-informacion{
+        padding: 50px 0 400px 0;
+    }
+}
+
+/*===================Main-Presentacion========================*/
+
+#cuerpo-presentacion{
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+h2{
+    margin: 20px;
+}
+
+/*======================Carrusel marcas===========================*/
+
+.swiper-slide img{
+    margin-bottom: 30px;
+    width: 300px !important;
+}
+
+/*=======================Carrusel ofertas============================*/
+.swiper-productos {
+  padding: 20px 0 50px; /* Espacio para las sombras y paginación */
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  height: 400px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Ajuste de color para las flechas si es necesario */
+.swiper-button-next, .swiper-button-prev {
+  color: #000;
+}
+
+/*=========================Recomendaciones=============================*/
+.swiper-recomendaciones {
+  max-width: 800px; /* Limitamos el ancho para que no se vea gigante */
+  padding: 40px;
+}
+
+.recommendation-card {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  background: #f9f9f9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+  height: 300px;
+  margin: 20px;
+}
+
+.card-image {
+  flex: 0 0 40%; /* La imagen ocupa el 40% del ancho */
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%; /* Altura fija para mantener consistencia */
+  object-fit: cover; /* Recorta la imagen para que rellene el espacio */
+}
+
+.card-content {
+  flex: 1; /* El texto ocupa el resto */
+  padding: 30px;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Ajuste para móviles: se pone uno arriba de otro */
+@media (max-width: 600px) {
+  .recommendation-card {
+    flex-direction: column;
+  }
+  .card-image {
+    flex: 0 0 100%;
+  }
+}
