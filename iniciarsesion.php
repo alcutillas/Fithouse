@@ -6,7 +6,7 @@ if (isset($_POST['email'])) {
 
     if($_POST['email'] == 'fit.housesanvi@gmail.com'){
       $_SESSION['rol'] = 'admin';
-      header("Location: administrador.php");
+      header("Location: admin/administrador.php");
       exit();
     }
 

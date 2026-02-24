@@ -49,53 +49,57 @@ require_once("templates/header.php");
         //Aqui habra que hacer algo para que lo edite el admin
       ?>
       <div class="swiper-slide">
-        <div class="product-card">
-          <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-          <h3>Nombre del Producto</h3>
-          <p class="precio">$99.00</p>
-          <button class="btn-buy">Añadir al carrito</button>
-        </div>
-      </div>
-        <div class="swiper-slide">
-        <div class="product-card">
-          <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-          <h3>Nombre del Producto</h3>
-          <p class="precio">$99.00</p>
-          <button class="btn-buy">Añadir al carrito</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="product-card">
-          <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-          <h3>Nombre del Producto</h3>
-          <p class="precio">$99.00</p>
-          <button class="btn-buy">Añadir al carrito</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="product-card">
-          <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-          <h3>Nombre del Producto</h3>
-          <p class="precio">$99.00</p>
-          <button class="btn-buy">Añadir al carrito</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="product-card">
-          <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-          <h3>Nombre del Producto</h3>
-          <p class="precio">$99.00</p>
-          <button class="btn-buy">Añadir al carrito</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="product-card">
-          <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-          <h3>Nombre del Producto</h3>
-          <p class="precio">$99.00</p>
-          <button class="btn-buy">Añadir al carrito</button>
-        </div>
-      </div>
+  <a class="product-card">
+    
+    <div class="img-container">
+      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+    </div>
+
+    <h3>Nombre del Producto</h3>
+    <p class="precio">$99.00</p>
+    <p class="descripcion">Esta es la descripción</p>
+
+    </a>
+</div>
+<div class="swiper-slide">
+  <a class="product-card">
+    
+    <div class="img-container">
+      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+    </div>
+
+    <h3>Nombre del Producto</h3>
+    <p class="precio">$99.00</p>
+    <p class="descripcion">Esta es la descripción</p>
+
+    </a>
+</div>
+<div class="swiper-slide">
+  <a class="product-card">
+    
+    <div class="img-container">
+      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+    </div>
+
+    <h3>Nombre del Producto</h3>
+    <p class="precio">$99.00</p>
+    <p class="descripcion">Esta es la descripción</p>
+
+    </a>
+</div>
+<div class="swiper-slide">
+  <a class="product-card">
+    
+    <div class="img-container">
+      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+    </div>
+
+    <h3>Nombre del Producto</h3>
+    <p class="precio">$99.00</p>
+    <p class="descripcion">Esta es la descripción</p>
+
+    </a>
+</div>
       
     </div>
 

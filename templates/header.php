@@ -11,7 +11,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabecera</title>
       <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/stylu.css">
 
     <?php
     if (isset($css)) {
@@ -36,6 +36,10 @@ session_start();
         ?>
         <link rel="stylesheet" href="static/css/registro.css">
     <?php
+    }else if($css == "catalogo"){
+        ?>
+        <link rel="stylesheet" href="static/css/catalogo.css">
+    <?php
     }}
     ?>
 
@@ -57,7 +61,7 @@ session_start();
 
     <ul class="nav-menu" id="nav-menu">
         <?php if(isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin"): ?>
-            <li class="admin-link"><a href="panel.php">Panel de control</a></li>
+            <li class="admin-link"><a href="admin/administrador.php">Admin</a></li>
         <?php endif; ?>
 
         <li><a href="acercade.php">Acerca de</a></li>
@@ -82,7 +86,7 @@ session_start();
                 </ul>
             </li>
         <?php else: ?>
-            <li class="user-options"><a href="logout.php">Cerrar Sesión (<?php echo $_SESSION['usuario']; ?>)</a></li>
+            <li class="user-options"><a href="logout.php">Cerrar Sesión</a></li>
         <?php endif; ?>
         
     </ul>
