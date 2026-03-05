@@ -4,8 +4,8 @@ session_start();
 if($_SESSION["rol"] != "admin")
     header("Location:../iniciarsesion.php");
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/Fithouse/funciones.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/Fithouse/conexion.php");
+    require_once("../funciones.php");
+    require_once("../conexion.php");
 
     
 ?>
@@ -19,8 +19,8 @@ if($_SESSION["rol"] != "admin")
     <title>Proyecto Entorno Servidor</title>
     
     <link rel="stylesheet" href="../static/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/stylu.css">
-    <link rel="stylesheet" href="../static/css/catalogo.css">
+    <link rel="stylesheet" href="../static/css/stylo.css">
+    <link rel="stylesheet" href="../static/css/catalog.css">
 </head>
 
 <body>

@@ -11,7 +11,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabecera</title>
       <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="static/css/stylu.css">
+    <link rel="stylesheet" href="static/css/style.css">
 
     <?php
     if (isset($css)) {
@@ -34,11 +34,11 @@ session_start();
     <?php
     }else if($css == "registro"){
         ?>
-        <link rel="stylesheet" href="static/css/registro.css">
+        <link rel="stylesheet" href="static/css/registros.css">
     <?php
     }else if($css == "catalogo"){
         ?>
-        <link rel="stylesheet" href="static/css/catalogo.css">
+        <link rel="stylesheet" href="static/css/catalog.css">
     <?php
     }}
     ?>

@@ -12,66 +12,60 @@ function usuarios($conexion){
   return $preparada->fetchAll();
 }
 
-    function generarSelect($conexion, $tabla, $columna, $nombreSelector, $valorSeleccionado = '', $mostrarTodas = true) {
-            $html = "<select name='$nombreSelector'>\n";
-            if ($mostrarTodas) {
-                $html .= " <option value='todas'>$mostrarTodas</option>\n";
-            }
-
-            // Consulta usando PDO
-            $sql = "SELECT DISTINCT $columna FROM $tabla ORDER BY $columna";
-            $stmt = $conexion->prepare($sql);
-            try{
-            $stmt->execute();
-            }catch(Exception $e){
-              echo "Error en el filtro: " . $e->getMessage();
-            }
-
-            foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $fila) {
-                $opcion = htmlspecialchars($fila[$columna]);            
-                $selected = (trim($valorSeleccionado) === trim($fila[$columna])) ? " selected" : "";
-                $html .= " <option value='$opcion'$selected>$opcion</option>\n";
-            }
-
-            $html .= "</select>\n";
-            return $html;
+function generarSelect($conexion, $tabla, $columna_id, $columna_nombre, $nombreSelector, $valorSeleccionado = '', $mostrarTodas = true) {
+    $html = "<select name='$nombreSelector'>\n";
+    if ($mostrarTodas) {
+        $html .= " <option value='todas'>$mostrarTodas</option>\n";
     }
 
+    // Ahora pedimos ID y Nombre
+    $sql = "SELECT $columna_id, $columna_nombre FROM $tabla ORDER BY $columna_nombre";
+    $stmt = $conexion->prepare($sql);
+    try {
+        $stmt->execute();
+    } catch(Exception $e) {
+        echo "Error en el filtro: " . $e->getMessage();
+    }
 
-    function productos($conexion, $categoria = "todas", $marca = "todas", $precio = "todas", $busqueda = "")
-{
-    $sql = "SELECT * FROM productos WHERE 1=1";
+    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $fila) {
+        $id = $fila[$columna_id];
+        $nombre = htmlspecialchars($fila[$columna_nombre]);            
+        $selected = ($valorSeleccionado == $id) ? " selected" : "";
+        $html .= " <option value='$id'$selected>$nombre</option>\n";
+    }
+
+    $html .= "</select>\n";
+    return $html;
+}
+
+function productos($conexion, $id_categoria = "todas", $marca = "todas", $precio = "todas", $busqueda = "") {
+    // Usamos JOIN para traer el nombre de la categoría aunque filtremos por ID
+    $sql = "SELECT p.*, c.nombre_categoria 
+            FROM productos p 
+            LEFT JOIN categorias c ON p.id_categoria = c.id_categoria 
+            WHERE 1=1";
     $params = [];
 
-    // Filtro por categoría
-    if ($categoria !== "todas" && !empty($categoria)) {
-        $sql .= " AND categoria = :categoria";
-        $params[':categoria'] = $categoria;
+    if ($id_categoria !== "todas" && !empty($id_categoria)) {
+        $sql .= " AND p.id_categoria = :id_cat";
+        $params[':id_cat'] = $id_categoria;
     }
 
-    // Filtro por marca
     if ($marca !== "todas" && !empty($marca)) {
-        $sql .= " AND marca = :marca";
+        $sql .= " AND p.marca = :marca";
         $params[':marca'] = $marca;
     }
 
-    // Filtro por búsqueda (nombre o descripción)
     if (!empty($busqueda)) {
-        $sql .= " AND (nombre_producto LIKE :busqueda OR descripcion LIKE :busqueda)";
+        $sql .= " AND (p.nombre_producto LIKE :busqueda OR p.descripcion LIKE :busqueda)";
         $params[':busqueda'] = "%$busqueda%";
     }
 
-    // Orden por precio
-    if ($precio === "asc") {
-        $sql .= " ORDER BY precio ASC";
-    } elseif ($precio === "desc") {
-        $sql .= " ORDER BY precio DESC";
-    }
+    if ($precio === "asc") { $sql .= " ORDER BY p.precio ASC"; } 
+    elseif ($precio === "desc") { $sql .= " ORDER BY p.precio DESC"; }
 
     $stmt = $conexion->prepare($sql);
     $stmt->execute($params);
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 ?>

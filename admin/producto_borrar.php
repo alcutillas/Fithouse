@@ -61,7 +61,7 @@ if (isset($_POST["borrar"])) {
     <strong>
     <?php
     echo "ID: " . $_GET["id"];
-    echo "<br>Nombre: " . $_GET["nombre"];
+    echo "<br>Nombre: " . $_GET["nombre_producto"];
     ?>
     </strong>
     <form action="" method="post">

@@ -14,19 +14,27 @@ if(isset($_POST["email"])){
   }
 
 if($registrado == false){
+  // Encriptamos la contraseña antes de guardarla
+  $password_encriptada = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    
   $_SESSION["rol"] = "cliente";
-  $consulta = "INSERT into usuarios (nombre,correo_electronico,telefono) VALUES (:nombre,:email,:telefono)";
-  $preparada = $conexion -> prepare($consulta);
-  try{
-    $preparada -> execute([
-      ":nombre" => $_POST["nombre"],
-      ":email" => $_POST["email"],
-      ":telefono" => $_POST["telefono"]
-    ]);
-  }catch(Exception $e){
-    echo "Ha habido un error al crear el usuario: " . $e->getMessage();
+  
+  $consulta = "INSERT INTO usuarios (nombre, correo_electronico, telefono, password, rol) 
+               VALUES (:nombre, :email, :telefono, :password, :rol)";
+  
+  $preparada = $conexion->prepare($consulta);
+  try {
+      $preparada->execute([
+          ":nombre"   => $_POST["nombre"],
+          ":email"    => $_POST["email"],
+          ":telefono" => $_POST["telefono"],
+          ":password" => $password_encriptada, // Guardamos el hash
+          ":rol"      => "cliente"
+      ]);
+      header("Location: index.php");
+  } catch(Exception $e) {
+      echo "Error: " . $e->getMessage();
   }
-  header("Location:index.php");
 }
   
   

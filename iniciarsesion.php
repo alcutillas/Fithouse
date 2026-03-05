@@ -2,23 +2,37 @@
 $css = "registro";
 require_once("templates/header.php");
 
-if (isset($_POST['email'])) {
+if (isset($_POST['email']) && isset($_POST['password'])) {
+  $email = $_POST['email'];
+  $pass  = $_POST['password'];
 
-    if($_POST['email'] == 'fit.housesanvi@gmail.com'){
-      $_SESSION['rol'] = 'admin';
-      header("Location: admin/administrador.php");
-      exit();
-    }
+  // 1. Buscamos al usuario por email
+  $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo_electronico = :email");
+  $stmt->execute([':email' => $email]);
+  $usuario = $stmt->fetch();
 
-    $usuarios = usuarios($conexion);
-  foreach($usuarios as $u){
-    if($u["correo_electronico"] == $_POST["email"]){
-      $_SESSION["rol"] = "cliente";
-      header("Location: index.php");
+  if ($usuario) {
+      // 2. Verificamos si la contraseña coincide con el hash guardado
+      if (password_verify($pass, $usuario['password'])) {
+          
+          // Login correcto
+          $_SESSION['rol'] = $usuario['rol']; // Usamos el rol de la BD
+          $_SESSION['id_usuario'] = $usuario['id_usuario'];
+
+          if ($email == 'fit.housesanvi@gmail.com') {
+              header("Location: admin/administrador.php");
+          } else {
+              header("Location: index.php");
+          }
+          exit();
+      } else {
+          echo "<p class='error'>Contraseña incorrecta</p>";
+      }
+  } else {
+      // Si no existe el email, mandamos a registrar
+      header("Location: registrar.php");
       exit();
-    }
   }
-  header("Location:registrar.php");
 }
 
 

@@ -17,9 +17,10 @@ $productos = productos($conexion, $categoria, $marca, $precio, $busqueda);
 
 <form method="GET" action="" class="filtros-inline">
 
-    <?php echo generarSelect($conexion, "productos", "categoria", "categoria", "", "Categoría"); ?>
-    <?php echo generarSelect($conexion, "productos", "marca", "marca", "", "Marca"); ?>
-
+<?php
+echo generarSelect($conexion, "categorias", "id_categoria", "nombre_categoria", "categoria", $categoria, "Categoría");
+echo generarSelect($conexion, "productos", "marca", "marca", "marca", $marca, "Marca");
+?>
     <select name="precio" id="filtro3">
         <option value="todas">Precio</option>
         <option value="asc">Menor - Mayor</option>
@@ -49,8 +50,8 @@ foreach($productos as $producto): ?>
     <img src="./static/img/productos/<?php echo $producto['imagen']; ?>" alt="Imagen">
     </div>
     <h3><?php echo $producto['nombre_producto']; ?></h3>
-    <p><?php echo $producto['marca']; ?></p>
-    <p class="precio">$<?php echo number_format($producto['precio'], 2); ?></p>
+    <span><?php echo $producto['marca']; ?></span><br>
+    <span class="precio">$<?php echo number_format($producto['precio'], 2); ?></span>
     <p class="descripcion"><?php echo $producto['descripcion']; ?></p>
 </a>
 
