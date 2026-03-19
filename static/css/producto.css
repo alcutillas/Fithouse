@@ -1,0 +1,115 @@
+.producto {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.producto img {
+    max-width: 50%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 2px solid #ffc107;
+    flex-shrink: 0;
+}
+
+.producto-info {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.producto-info h2 {
+    color: #ffc107;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.producto-info p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.producto-info strong {
+    color: #ffc107;
+}
+
+.producto-info .precio {
+    font-size: 2rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.producto-info .descripcion {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+h3 {
+    color: #ffc107;
+    font-size: 2rem;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.resenas {
+    max-width: 900px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.resena {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.resena strong {
+    color: #ffc107;
+}
+
+.resena em {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.resena p {
+    color: #fff;
+    margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .producto {
+        flex-direction: column;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .producto img {
+        max-width: 90%;
+        max-height: 50vh;
+    }
+
+    .producto-info {
+        max-width: 100%;
+    }
+
+    .producto-info h2 {
+        font-size: 2rem;
+    }
+
+    .producto-info .precio {
+        font-size: 1.8rem;
+    }
+}

@@ -40,6 +40,10 @@ session_start();
         ?>
         <link rel="stylesheet" href="static/css/catalog.css">
     <?php
+    }else if($css == "producto"){
+        ?>
+        <link rel="stylesheet" href="static/css/producto.css">
+    <?php
     }}
     ?>
 

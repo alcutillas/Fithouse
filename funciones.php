@@ -19,7 +19,7 @@ function generarSelect($conexion, $tabla, $columna_id, $columna_nombre, $nombreS
     }
 
     // Ahora pedimos ID y Nombre
-    $sql = "SELECT $columna_id, $columna_nombre FROM $tabla ORDER BY $columna_nombre";
+    $sql = "SELECT DISTINCT $columna_id, $columna_nombre FROM $tabla ORDER BY $columna_nombre";
     $stmt = $conexion->prepare($sql);
     try {
         $stmt->execute();
@@ -66,6 +66,38 @@ function productos($conexion, $id_categoria = "todas", $marca = "todas", $precio
 
     $stmt = $conexion->prepare($sql);
     $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function buscarProducto($conexion, $idProducto){
+    $sql = "SELECT p.*, c.nombre_categoria 
+            FROM productos p
+            LEFT JOIN categorias c ON p.id_categoria = c.id_categoria
+            WHERE p.id_producto = :id";
+    $stmt = $conexion->prepare($sql);
+    try{
+        $stmt->execute([
+            ':id' => $idProducto
+        ]);
+    }catch(Exception $e){
+        echo("Error al buscar el producto : " . $e->getMessage());
+    }
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function obtenerResenas($conexion, $idProducto){
+    $sql = "SELECT r.puntuacion, r.comentario, r.fecha_resena, u.nombre
+            FROM resenas r
+            JOIN usuarios u ON r.id_usuario = u.id_usuario
+            WHERE r.id_producto = :id
+            ORDER BY r.fecha_resena DESC";
+    $stmt = $conexion->prepare($sql);
+    try {
+        $stmt->execute([':id' => $idProducto]);
+    } catch(Exception $e){
+        echo "Error al obtener reseñas: " . $e->getMessage();
+    }
+    
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>

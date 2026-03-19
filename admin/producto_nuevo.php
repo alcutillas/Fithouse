@@ -23,7 +23,86 @@ if (isset($_POST['guardar'])) {
                 if (!is_dir($directorio)) {
                     mkdir($directorio, 0777, true);
                 }
-                move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio . "/" . $nombreSeguro);
+                $directorio = "../static/img/productos";
+
+                $extensiones = ["image/jpeg", "image/png", "image/jpg"];
+                $directorio = "../static/img/productos";
+                
+                if (!is_dir($directorio)) {
+                    mkdir($directorio, 0777, true);
+                }
+                
+                $nombreSeguro = null;
+                
+                if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                
+                    // 🔍 Detectar tipo REAL del archivo
+                    $info = getimagesize($_FILES['imagen']['tmp_name']);
+                
+                    if ($info === false) {
+                        echo "<script>alert('El archivo no es una imagen válida');</script>";
+                        $error = true;
+                    } else {
+                
+                        $mime = $info['mime'];
+                
+                        // 🔥 Crear imagen según tipo REAL
+                        switch ($mime) {
+                            case 'image/jpeg':
+                                $imagenOriginal = @imagecreatefromjpeg($_FILES['imagen']['tmp_name']);
+                                break;
+                            case 'image/png':
+                                $imagenOriginal = @imagecreatefrompng($_FILES['imagen']['tmp_name']);
+                                break;
+                            case 'image/webp':
+                                $imagenOriginal = @imagecreatefromwebp($_FILES['imagen']['tmp_name']);
+                                break;
+                            default:
+                                echo "<script>alert('Formato no soportado');</script>";
+                                $error = true;
+                                break;
+                        }
+                
+                        // 🛑 VALIDACIÓN CLAVE
+                        if (empty($error) && !$imagenOriginal) {
+                            echo "<script>alert('Error al procesar la imagen');</script>";
+                            $error = true;
+                        }
+                
+                        if (empty($error)) {
+                
+                            $anchoOriginal = imagesx($imagenOriginal);
+                            $altoOriginal = imagesy($imagenOriginal);
+                
+                            $nuevoAncho = 500;
+                            $nuevoAlto = ($altoOriginal / $anchoOriginal) * $nuevoAncho;
+                
+                            $imagenNueva = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                
+                            imagecopyresampled(
+                                $imagenNueva,
+                                $imagenOriginal,
+                                0, 0, 0, 0,
+                                $nuevoAncho,
+                                $nuevoAlto,
+                                $anchoOriginal,
+                                $altoOriginal
+                            );
+                
+                            // 🔥 Guardado seguro (con fallback)
+                            if (function_exists('imagewebp')) {
+                                $nombreSeguro = uniqid() . ".webp";
+                                imagewebp($imagenNueva, $directorio . "/" . $nombreSeguro, 80);
+                            } else {
+                                $nombreSeguro = uniqid() . ".jpg";
+                                imagejpeg($imagenNueva, $directorio . "/" . $nombreSeguro, 75);
+                            }
+                
+                            imagedestroy($imagenOriginal);
+                            imagedestroy($imagenNueva);
+                        }
+                    }
+                }
             } else {
                 echo "<script>alert('Error: Extensión de imagen no permitida');</script>";
                 $error = true;

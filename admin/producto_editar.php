@@ -32,18 +32,76 @@ if (isset($_POST["guardar"])) {
     $nombreSeguro = $producto['imagen']; // Por defecto mantenemos la actual
 
     // GESTIÓN DE IMAGEN NUEVA
+    $extensiones = ["image/jpeg", "image/png", "image/jpg"];
+    $directorio = "../static/img/productos";
+
+    if (!is_dir($directorio)) {
+        mkdir($directorio, 0777, true);
+    }
+    
+    // Mantener imagen actual por defecto
+    $nombreSeguro = $producto['imagen'];
+    
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        // Borrar imagen anterior si existe
-        if ($producto['imagen'] && file_exists($directorio . "/" . $producto['imagen'])) {
-            unlink($directorio . "/" . $producto['imagen']);
-        }
-
-        $nombreOriginal = $_FILES['imagen']['name'];
-        $extension = pathinfo($nombreOriginal, PATHINFO_EXTENSION);
-        $nombreSeguro = uniqid() . "." . $extension;
-
-        if (in_array($_FILES['imagen']['type'], $extensiones)) {
-            move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio . "/" . $nombreSeguro);
+    
+        $info = getimagesize($_FILES['imagen']['tmp_name']);
+    
+        if ($info !== false) {
+    
+            $mime = $info['mime'];
+    
+            switch ($mime) {
+                case 'image/jpeg':
+                    $imagenOriginal = @imagecreatefromjpeg($_FILES['imagen']['tmp_name']);
+                    break;
+                case 'image/png':
+                    $imagenOriginal = @imagecreatefrompng($_FILES['imagen']['tmp_name']);
+                    break;
+                case 'image/webp':
+                    $imagenOriginal = @imagecreatefromwebp($_FILES['imagen']['tmp_name']);
+                    break;
+                default:
+                    $imagenOriginal = false;
+                    break;
+            }
+    
+            if ($imagenOriginal) {
+    
+                // 🔥 borrar antigua solo si la nueva es válida
+                if ($producto['imagen'] && file_exists($directorio . "/" . $producto['imagen'])) {
+                    unlink($directorio . "/" . $producto['imagen']);
+                }
+    
+                $anchoOriginal = imagesx($imagenOriginal);
+                $altoOriginal = imagesy($imagenOriginal);
+    
+                $nuevoAncho = 500;
+                $nuevoAlto = ($altoOriginal / $anchoOriginal) * $nuevoAncho;
+    
+                $imagenNueva = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+    
+                imagecopyresampled(
+                    $imagenNueva,
+                    $imagenOriginal,
+                    0, 0, 0, 0,
+                    $nuevoAncho,
+                    $nuevoAlto,
+                    $anchoOriginal,
+                    $altoOriginal
+                );
+    
+                // 🔥 Guardar optimizada
+                if (function_exists('imagewebp')) {
+                    $nombreSeguro = uniqid() . ".webp";
+                    imagewebp($imagenNueva, $directorio . "/" . $nombreSeguro, 80);
+                } else {
+                    $nombreSeguro = uniqid() . ".jpg";
+                    imagejpeg($imagenNueva, $directorio . "/" . $nombreSeguro, 75);
+                }
+    
+                imagedestroy($imagenOriginal);
+                imagedestroy($imagenNueva);
+            }
         }
     }
 
@@ -114,7 +172,7 @@ if (isset($_POST["guardar"])) {
         <?php endif; ?>
 
         <label>Subir nueva imagen (opcional)</label>
-        <input type="file" name="imagen">
+        <input type="file" name="imagen" accept="image/*">
 
         <label>Existencias actuales</label>
         <input type="number" name="cantidad_existencias" value="<?= $producto["cantidad_existencias"] ?>" min="0" required>
