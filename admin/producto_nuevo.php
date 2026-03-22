@@ -1,7 +1,7 @@
 <?php 
 include 'header_admin.php'; 
 
-$extensiones = ["image/jpg", "image/jpeg", "image/png"];
+$extensiones = ["image/jpg", "image/jpeg", "image/png", "image/webp"];
 $error = false;
 
 // Obtener todas las categorías para el select
@@ -25,7 +25,7 @@ if (isset($_POST['guardar'])) {
                 }
                 $directorio = "../static/img/productos";
 
-                $extensiones = ["image/jpeg", "image/png", "image/jpg"];
+                $extensiones = ["image/jpeg", "image/png", "image/jpg", "image/webp"];
                 $directorio = "../static/img/productos";
                 
                 if (!is_dir($directorio)) {

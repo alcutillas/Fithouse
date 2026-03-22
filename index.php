@@ -49,7 +49,7 @@ require_once("templates/header.php");
         //Aqui habra que hacer algo para que lo edite el admin
       ?>
       <div class="swiper-slide">
-  <a class="product-card">
+    <a class="product-card">
     
     <div class="img-container">
       <img src="./static/img/fondo-index.jpg" alt="Producto 1">
@@ -60,7 +60,7 @@ require_once("templates/header.php");
     <p class="descripcion">Esta es la descripción</p>
 
     </a>
-</div>
+  </div>
 <div class="swiper-slide">
   <a class="product-card">
     

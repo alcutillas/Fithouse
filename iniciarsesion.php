@@ -16,6 +16,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
       if (password_verify($pass, $usuario['password'])) {
           
           // Login correcto
+          $_SESSION['nombre'] = $usuario['nombre'];
           $_SESSION['rol'] = $usuario['rol']; // Usamos el rol de la BD
           $_SESSION['id_usuario'] = $usuario['id_usuario'];
 

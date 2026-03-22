@@ -27,7 +27,7 @@ if (isset($_POST["cancelar"])) {
 // Si se guarda
 if (isset($_POST["guardar"])) {
 
-    $extensiones = ["image/jpg", "image/jpeg", "image/png"];
+    $extensiones = ["image/jpg", "image/jpeg", "image/png", "image/webp"];
     $directorio = "../static/img/productos";
     $nombreSeguro = $producto['imagen']; // Por defecto mantenemos la actual
 

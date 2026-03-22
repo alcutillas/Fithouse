@@ -24,21 +24,27 @@ if($registrado == false){
   
   $preparada = $conexion->prepare($consulta);
   try {
-      $preparada->execute([
-          ":nombre"   => $_POST["nombre"],
-          ":email"    => $_POST["email"],
-          ":telefono" => $_POST["telefono"],
-          ":password" => $password_encriptada, // Guardamos el hash
-          ":rol"      => "cliente"
-      ]);
-      header("Location: index.php");
+    $preparada->execute([
+      ":nombre"   => $_POST["nombre"],
+      ":email"    => $_POST["email"],
+      ":telefono" => $_POST["telefono"],
+      ":password" => $password_encriptada,
+      ":rol"      => "cliente"
+  ]);
+  
+  // Obtener el ID generado
+  $id_usuario = $conexion->lastInsertId();
+  
+  // Guardarlo en sesión
+  $_SESSION["id_usuario"] = $id_usuario;
+  $_SESSION["nombre"] = $_POST["nombre"];
+  
+  header("Location: index.php");
   } catch(Exception $e) {
       echo "Error: " . $e->getMessage();
   }
 }
   
-  
-
 }
 
 

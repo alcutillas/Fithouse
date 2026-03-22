@@ -100,4 +100,26 @@ function obtenerResenas($conexion, $idProducto){
     
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function crearResena($conexion, $idProducto, $idUsuario, $puntuacion, $comentario) {
+    
+    if ($puntuacion < 1 || $puntuacion > 5) return false;
+
+    try {
+        $sql = "INSERT INTO resenas (id_producto, id_usuario, puntuacion, comentario, fecha_resena)
+                VALUES (:id_producto, :id_usuario, :puntuacion, :comentario, NOW())";
+
+        $stmt = $conexion->prepare($sql);
+
+        return $stmt->execute([
+            ':id_producto' => $idProducto,
+            ':id_usuario' => $idUsuario,
+            ':puntuacion' => $puntuacion,
+            ':comentario' => $comentario
+        ]);
+
+    } catch (PDOException $e) {
+        return false;
+    }
+}
 ?>

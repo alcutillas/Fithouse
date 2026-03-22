@@ -48,7 +48,6 @@
 }
 
 .producto-info .descripcion {
-    background-color: #222;
     padding: 15px;
     border-radius: 8px;
 }
@@ -60,32 +59,93 @@ h3 {
     text-align: center;
 }
 
-.resenas {
-    max-width: 900px;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/*Reseñas*/
+.resena {
+    background-color: #1d1d1d;
+    color: #fff;
+    border-left: 5px solid #ffc107;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+    width: 80%;
 }
 
-.resena {
-    background-color: #222;
-    padding: 15px;
-    border-radius: 8px;
+.resena:hover {
+    transform: scale(1.02);
 }
 
 .resena strong {
     color: #ffc107;
+    font-size: 1.1em;
 }
 
 .resena em {
-    font-size: 0.9rem;
     color: #ccc;
+    font-size: 0.85em;
 }
 
 .resena p {
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.sin-resenas {
+    background-color: #fff;
+    color: #1d1d1d;
+    border: 2px dashed #ffc107;
+    padding: 10px;
+    border-radius: 6px;
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+}
+
+ /* FORMULARIO */
+ .form-resena {
+    background: #1d1d1d;
     color: #fff;
-    margin-top: 8px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    border: 2px solid #ffc107;
+    width: 80%;
+}
+
+.form-resena h4 {
+    color: #ffc107;
+    margin-bottom: 10px;
+}
+
+
+.form-resena select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.form-resena textarea{
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-resena button {
+    width: 100%;
+    background: #ffc107;
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form-resena button:hover {
+    background: #ffc107;
 }
 
 /* Responsive */
@@ -112,4 +172,17 @@ h3 {
     .producto-info .precio {
         font-size: 1.8rem;
     }
+}
+
+.estrella {
+    font-size: 18px;
+    margin-right: 2px;
+}
+
+.estrella.llena {
+    color: rgb(255, 221, 0); /* amarillo */
+}
+
+.estrella.vacia {
+    color: #fbff00; /* gris oscuro */
 }
