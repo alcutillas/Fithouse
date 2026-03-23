@@ -2,117 +2,166 @@
 $css = "producto";
 require_once("templates/header.php");
 
-//Obtener id del producto desde GET
-if (!isset($_GET['id'])) {
-    die("No se especificó el producto.");
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    header("Location: catalogo.php");
+    exit;
 }
 
-$idProducto = $_GET['id'];
-//PROCESAR ENVÍO DE RESEÑA
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$idProducto = (int) $_GET['id'];
 
-    if (!isset($_SESSION['id_usuario'])) {
-        header('Location:iniciarsesion.php');
-    }
-
-    $idUsuario = $_SESSION['id_usuario'];
-    $puntuacion = $_POST['puntuacion'];
-    $comentario = $_POST['comentario'];
-
-    if (crearResena($conexion, $idProducto, $idUsuario, $puntuacion, $comentario)) {
-        // Recargar para evitar reenvío del formulario
-        header("Location: producto.php?id=" . $idProducto);
-        exit();
-    } else {
-        echo "Error al guardar la reseña.";
-    }
-}
-//Obtener producto y reseñas
 $producto = buscarProducto($conexion, $idProducto);
+
+if (!$producto || !isset($producto[0])) {
+    header("Location: catalogo.php");
+    exit;
+}
+
 $producto = $producto[0];
-if (!$producto) {
-    die("Producto no encontrado.");
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["form_tipo"]) && $_POST["form_tipo"] === "resena") {
+    if (!isset($_SESSION['id_usuario'])) {
+        header("Location: iniciarsesion.php");
+        exit;
+    }
+
+    $idUsuario = (int) $_SESSION['id_usuario'];
+    $puntuacion = isset($_POST['puntuacion']) ? (int) $_POST['puntuacion'] : 0;
+    $comentario = trim($_POST['comentario'] ?? "");
+
+    if ($puntuacion >= 1 && $puntuacion <= 5 && $comentario !== "") {
+        if (crearResena($conexion, $idProducto, $idUsuario, $puntuacion, $comentario)) {
+            header("Location: producto.php?id=" . $idProducto);
+            exit;
+        }
+
+        $errorResena = "Error al guardar la reseña.";
+    } else {
+        $errorResena = "Completa correctamente la puntuación y el comentario.";
+    }
 }
 
 $resenas = obtenerResenas($conexion, $idProducto);
-
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo($producto['nombre_producto']); ?></title>
-</head>
-<body>
 
-<div class="producto">
-    <?php if (!empty($producto['imagen'])): ?>
-        <img src="<?php echo('./static/img/productos/' . $producto['imagen']); ?>" alt="<?php echo htmlspecialchars($producto['nombre_producto']); ?>">
-    <?php endif; ?>
-    
-    <div class="producto-info">
-        <h2><?php echo htmlspecialchars($producto['nombre_producto']); ?></h2>
-        <p><strong>Marca:</strong> <?php echo $producto['marca']; ?></p>
-        <p><strong>Categoría:</strong> <?php echo $producto['nombre_categoria']; ?></p>
-        <p class="precio"><strong>Precio:</strong> $<?php echo $producto['precio']; ?></p>
-        <p class="descripcion"><strong>Descripción: </strong><?php echo htmlspecialchars($producto['descripcion']); ?></p>
-    </div>
-</div>
-
-
-<h3>Reseñas del producto</h3>
-
-<!-- FORMULARIO PARA AÑADIR RESEÑA -->
-<div class="form-resena">
-    <h4>Deja tu reseña</h4>
-    <form method="POST">
-
-        <select name="puntuacion" required>
-            <option value="">Puntuación</option>
-            <option value="5">⭐⭐⭐⭐⭐ (5)</option>
-            <option value="4">⭐⭐⭐⭐ (4)</option>
-            <option value="3">⭐⭐⭐ (3)</option>
-            <option value="2">⭐⭐ (2)</option>
-            <option value="1">⭐ (1)</option>
-        </select>
-
-        <textarea name="comentario" rows="4" placeholder="Escribe tu reseña..." required></textarea>
-
-        <button type="submit">Enviar reseña</button>
-    </form>
-</div>
-
-<?php if (empty($resenas)): ?>
-    <p class="sin-resenas">No hay reseñas para este producto.</p>
-<?php else: ?>
-    <?php foreach ($resenas as $resena): ?>
-        <div class="resena">
-            <strong><?php echo htmlspecialchars($resena['nombre']); ?></strong> 
-            <?php
-            $puntuacion = (int)$resena['puntuacion'];
-
-            // Estrellas llenas
-            for ($i = 0; $i < $puntuacion; $i++) {
-                echo '<span class="estrella llena">★</span>';
-            }
-
-            // Estrellas vacías
-            for ($i = $puntuacion; $i < 5; $i++) {
-                echo '<span class="estrella vacia">☆</span>';
-            }
-            ?>
-            <br>
-            <em><?php echo date("d/m/Y H:i", strtotime($resena['fecha_resena'])); ?></em>
-            <p><?php echo nl2br(htmlspecialchars($resena['comentario'])); ?></p>
+<main id="producto-detalle">
+    <section class="producto producto-detalle-wrap">
+        <div class="producto-img">
+            <?php if (!empty($producto['imagen'])): ?>
+                <img
+                    src="./static/img/productos/<?php echo htmlspecialchars($producto['imagen']); ?>"
+                    alt="<?php echo htmlspecialchars($producto['nombre_producto']); ?>"
+                >
+            <?php endif; ?>
         </div>
-    <?php endforeach; ?>
-<?php endif; ?>
 
+        <div class="producto-info">
+            <span class="marca"><?php echo htmlspecialchars($producto['marca']); ?></span>
+            <h1><?php echo htmlspecialchars($producto['nombre_producto']); ?></h1>
 
-</body>
-</html>
+            <?php if (!empty($producto['nombre_categoria'])): ?>
+                <p class="categoria"><strong>Categoría:</strong> <?php echo htmlspecialchars($producto['nombre_categoria']); ?></p>
+            <?php endif; ?>
 
+            <p class="precio">$<?php echo number_format((float)$producto['precio'], 2); ?></p>
+            <p class="descripcion"><?php echo nl2br(htmlspecialchars($producto['descripcion'])); ?></p>
 
+            <?php if (isset($producto['cantidad_existencias'])): ?>
+                <p class="stock">
+                    <strong>Stock disponible:</strong> <?php echo (int) $producto['cantidad_existencias']; ?>
+                </p>
+            <?php endif; ?>
+
+            <?php if (isset($producto['cantidad_existencias']) && (int)$producto['cantidad_existencias'] > 0): ?>
+                <form action="acciones/agregar_carrito.php" method="POST" class="form-add-cart">
+                    <input type="hidden" name="id_producto" value="<?php echo (int) $producto['id_producto']; ?>">
+
+                    <label for="cantidad">Cantidad</label>
+                    <input
+                        type="number"
+                        name="cantidad"
+                        id="cantidad"
+                        min="1"
+                        max="<?php echo (int) $producto['cantidad_existencias']; ?>"
+                        value="1"
+                        required
+                    >
+
+                    <button type="submit" class="btn-principal">Añadir al carrito</button>
+                </form>
+            <?php else: ?>
+                <p class="sin-stock">Producto sin stock</p>
+            <?php endif; ?>
+        </div>
+    </section>
+    
+    <section class="resenas-wrap">
+        <h2>Reseñas del producto</h2>
+
+        <div class="form-resena">
+            <h3>Deja tu reseña</h3>
+
+            <?php if (!empty($errorResena)): ?>
+                <p class="error-resena"><?php echo htmlspecialchars($errorResena); ?></p>
+            <?php endif; ?>
+
+            <form method="POST">
+                <input type="hidden" name="form_tipo" value="resena">
+
+                <select name="puntuacion" required>
+                    <option value="">Puntuación</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4)</option>
+                    <option value="3">⭐⭐⭐ (3)</option>
+                    <option value="2">⭐⭐ (2)</option>
+                    <option value="1">⭐ (1)</option>
+                </select>
+
+                <textarea
+                    name="comentario"
+                    rows="4"
+                    placeholder="Escribe tu reseña..."
+                    required
+                ></textarea>
+
+                <button type="submit" class="btn-principal">Enviar reseña</button>
+            </form>
+            
+        </div>
+
+        <div class="lista-resenas">
+            <?php if (empty($resenas)): ?>
+                <p class="sin-resenas">No hay reseñas para este producto.</p>
+            <?php else: ?>
+                <?php foreach ($resenas as $resena): ?>
+                    <article class="resena">
+                        <div class="resena-top">
+                            <strong><?php echo htmlspecialchars($resena['nombre']); ?></strong>
+
+                            <div class="resena-estrellas">
+                                <?php
+                                $puntuacion = (int) $resena['puntuacion'];
+
+                                for ($i = 0; $i < $puntuacion; $i++) {
+                                    echo '<span class="estrella llena">★</span>';
+                                }
+
+                                for ($i = $puntuacion; $i < 5; $i++) {
+                                    echo '<span class="estrella vacia">☆</span>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+                        <em><?php echo date("d/m/Y H:i", strtotime($resena['fecha_resena'])); ?></em>
+                        <p><?php echo nl2br(htmlspecialchars($resena['comentario'])); ?></p>
+                    </article>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+
+        
+    </section>
+</main>
 
 <?php
 require_once("templates/footer.php");

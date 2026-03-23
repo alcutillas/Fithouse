@@ -44,6 +44,14 @@ session_start();
         ?>
         <link rel="stylesheet" href="static/css/producto.css">
     <?php
+    }else if($css == "carrito"){
+        ?>
+        <link rel="stylesheet" href="static/css/carrito.css">
+    <?php
+    }else if($css == "checkout"){
+        ?>
+        <link rel="stylesheet" href="static/css/checkout.css">
+    <?php
     }}
     ?>
 
@@ -79,6 +87,7 @@ session_start();
         <li><a href="catalogo.php">Catálogo</a></li>
         <li><a href="pedidos.php">Pedidos</a></li>
         <li><a href="contacto.php">Contacto</a></li>
+        <li><a href="carrito.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
         
         <?php if(empty($_SESSION)): ?>
             <li class="dropdown user-options">

@@ -1,0 +1,142 @@
+#checkout {
+    background: #fff;
+    padding: 40px 0 70px;
+}
+
+.checkout-wrap {
+    width: min(1150px, 92%);
+    margin: 0 auto;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.checkout-form-box,
+.checkout-resumen,
+.checkout-ok {
+    background: #fff;
+    border: 2px solid #f0b400;
+    border-radius: 22px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .08);
+    padding: 24px;
+}
+
+.checkout-form-box h1,
+.checkout-resumen h2,
+.checkout-pagos h2 {
+    margin-top: 0;
+}
+
+.checkout-formulario {
+    display: grid;
+    gap: 14px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-weight: 800;
+    color: #111;
+}
+
+.campo input {
+    height: 46px;
+    border: 2px solid #f0b400;
+    border-radius: 10px;
+    padding: 0 14px;
+}
+
+.btn-principal,
+.btn-stripe {
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 800;
+    padding: 14px 18px;
+    text-decoration: none;
+}
+
+.btn-principal {
+    background: linear-gradient(180deg, #ffd84d, #f0c000);
+    color: #111;
+}
+
+.btn-stripe {
+    width: 100%;
+    background: #635bff;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.checkout-pagos {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #ececec;
+}
+
+.checkout-item,
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.checkout-total {
+    border-top: 1px solid #ececec;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.checkout-errores {
+    background: #fff1f1;
+    border: 1px solid #ffb9b9;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+}
+
+.checkout-errores p {
+    margin: 0 0 8px;
+}
+
+.checkout-errores p:last-child {
+    margin-bottom: 0;
+}
+
+.checkout-ok {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media (max-width: 920px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    #checkout {
+        padding: 24px 0 50px;
+    }
+
+    .checkout-wrap {
+        width: 94%;
+    }
+
+    .checkout-form-box,
+    .checkout-resumen,
+    .checkout-ok {
+        padding: 18px;
+        border-radius: 18px;
+    }
+}
