@@ -9,8 +9,32 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabecera</title>
-      <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
+
+    <title>Fithouse Sanvi</title>
+
+    <meta name="description" content="Compra suplementos deportivos baratos de calidad: proteína, creatina, pre-entreno y más. Envíos rápidos y precios competitivos.">
+    <meta name="keywords" content="suplementos deportivos, proteína whey, creatina, pre entreno, tienda suplementación">
+    <meta name="author" content="Fithouse Sanvi">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://fithousesanvi.es/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tienda de Suplementación Deportiva">
+    <meta property="og:description" content="Proteína, creatina y suplementos al mejor precio.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fithousesanvi.es/">
+    <meta property="og:image" content="https://fithousesanvi.es/static/img/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tienda de Suplementación Deportiva">
+    <meta name="twitter:description" content="Compra suplementos deportivos online.">
+    <meta name="twitter:image" content="https://fithousesanvi.es/static/img/og-image.jpg">
+
+    <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="static/css/style.css">
 
     <?php

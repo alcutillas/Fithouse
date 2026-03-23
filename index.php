@@ -41,168 +41,154 @@ require_once("templates/header.php");
       });
     </script>
         </div>
-        <div>
-            <h2>Ofertas</h2>
+        <section class="home-sliders">
+
+  <div class="slider-section ofertas-section">
+    <h2 class="section-title">Ofertas</h2>
+
     <div class="swiper swiper-productos">
-    <div class="swiper-wrapper">
-      <?php
-        //Aqui habra que hacer algo para que lo edite el admin
-      ?>
-      <div class="swiper-slide">
-    <a class="product-card">
-    
-    <div class="img-container">
-      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-    </div>
-
-    <h3>Nombre del Producto</h3>
-    <p class="precio">$99.00</p>
-    <p class="descripcion">Esta es la descripción</p>
-
-    </a>
-  </div>
-<div class="swiper-slide">
-  <a class="product-card">
-    
-    <div class="img-container">
-      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-    </div>
-
-    <h3>Nombre del Producto</h3>
-    <p class="precio">$99.00</p>
-    <p class="descripcion">Esta es la descripción</p>
-
-    </a>
-</div>
-<div class="swiper-slide">
-  <a class="product-card">
-    
-    <div class="img-container">
-      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-    </div>
-
-    <h3>Nombre del Producto</h3>
-    <p class="precio">$99.00</p>
-    <p class="descripcion">Esta es la descripción</p>
-
-    </a>
-</div>
-<div class="swiper-slide">
-  <a class="product-card">
-    
-    <div class="img-container">
-      <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-    </div>
-
-    <h3>Nombre del Producto</h3>
-    <p class="precio">$99.00</p>
-    <p class="descripcion">Esta es la descripción</p>
-
-    </a>
-</div>
-      
-    </div>
-
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    
-  </div>
-
-  <script>
-    const swiperProductos = new Swiper('.swiper-productos', {
-  slidesPerView: 1,
-  spaceBetween: 20,
-  loop: true,
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-
-  breakpoints: {
-    640: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 4, 
-    },
-    1440: {
-      slidesPerView: 5, 
-    }
-  }
-});
-  </script>
-
-        <div>
-            <h2>Recomendaciones</h2>
-  
-  <div class="swiper swiper-recomendaciones">
-    <div class="swiper-wrapper">
-      
-      <div class="swiper-slide">
-        <div class="recommendation-card">
-          <div class="card-image">
-            <img src="./static/img/fondo-index.jpg" alt="Producto">
-          </div>
-          <div class="card-content">
-            <h4>Nombre del producto</h4>
-            <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
-          </div>
+      <div class="swiper-wrapper">
+        <?php
+          // Aqui habra que hacer algo para que lo edite el admin
+        ?>
+        <div class="swiper-slide">
+          <a class="product-card">
+            <div class="img-container">
+              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+            </div>
+            <h3>Nombre del Producto</h3>
+            <p class="precio">$99.00</p>
+            <p class="descripcion">Esta es la descripción</p>
+          </a>
         </div>
-      
-      
-      
-      <div class="swiper-slide">
-        <div class="recommendation-card">
-          <div class="card-image">
-            <img src="./static/img/fondo-index.jpg" alt="Producto">
-          </div>
-          <div class="card-content">
-            <h4>Nombre del producto</h4>
-            <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
-          </div>
+
+        <div class="swiper-slide">
+          <a class="product-card">
+            <div class="img-container">
+              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+            </div>
+            <h3>Nombre del Producto</h3>
+            <p class="precio">$99.00</p>
+            <p class="descripcion">Esta es la descripción</p>
+          </a>
         </div>
-      
-        
-      
-      <div class="swiper-slide">
-        <div class="recommendation-card">
-          <div class="card-image">
-            <img src="./static/img/fondo-index.jpg" alt="Producto">
-          </div>
-          <div class="card-content">
-            <h4>Nombre del producto</h4>
-            <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
-          </div>
+
+        <div class="swiper-slide">
+          <a class="product-card">
+            <div class="img-container">
+              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+            </div>
+            <h3>Nombre del Producto</h3>
+            <p class="precio">$99.00</p>
+            <p class="descripcion">Esta es la descripción</p>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a class="product-card">
+            <div class="img-container">
+              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
+            </div>
+            <h3>Nombre del Producto</h3>
+            <p class="precio">$99.00</p>
+            <p class="descripcion">Esta es la descripción</p>
+          </a>
         </div>
       </div>
+
+      <div class="swiper-button-next ofertas-next"></div>
+      <div class="swiper-button-prev ofertas-prev"></div>
+    </div>
+  </div>
+
+  <div class="slider-section recomendaciones-section">
+    <h2 class="section-title">Recomendaciones</h2>
+
+    <div class="swiper swiper-recomendaciones">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="recommendation-card">
+            <div class="card-image">
+              <img src="./static/img/fondo-index.jpg" alt="Producto">
+            </div>
+            <div class="card-content">
+              <h4>Nombre del producto</h4>
+              <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="recommendation-card">
+            <div class="card-image">
+              <img src="./static/img/fondo-index.jpg" alt="Producto">
+            </div>
+            <div class="card-content">
+              <h4>Nombre del producto</h4>
+              <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="recommendation-card">
+            <div class="card-image">
+              <img src="./static/img/fondo-index.jpg" alt="Producto">
+            </div>
+            <div class="card-content">
+              <h4>Nombre del producto</h4>
+              <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-    <div class="swiper-button-next rec-next"></div>
-    <div class="swiper-button-prev rec-prev"></div>
+      <div class="swiper-button-next rec-next"></div>
+      <div class="swiper-button-prev rec-prev"></div>
+    </div>
   </div>
+
+</section>
+
 <script>
-    const swiperRec = new Swiper('.swiper-recomendaciones', {
-  slidesPerView: 1,
-  spaceBetween: 30,
-  loop: true,
-  // Efecto de transición (opcional, 'fade' queda muy bien para 1 solo slide)
-  effect: 'slide', 
-  
-  navigation: {
-    nextEl: '.rec-next',
-    prevEl: '.rec-prev',
-  },
-  
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
-});
+  const swiperProductos = new Swiper('.swiper-productos', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: '.ofertas-next',
+      prevEl: '.ofertas-prev',
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 4,
+      },
+      1440: {
+        slidesPerView: 5,
+      }
+    }
+  });
+
+  const swiperRec = new Swiper('.swiper-recomendaciones', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    effect: 'slide',
+    navigation: {
+      nextEl: '.rec-next',
+      prevEl: '.rec-prev',
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+  });
 </script>
-  
-        </div>
-    </section>
 </main>
 
 <?php
