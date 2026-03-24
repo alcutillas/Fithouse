@@ -33,8 +33,9 @@ session_start();
     <meta name="twitter:image" content="https://fithousesanvi.es/static/img/og-image.jpg">
 
     <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="static/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="static/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="static/fontawesome/css/brands.min.css">
     <link rel="stylesheet" href="static/css/style.css">
 
     <?php
@@ -62,7 +63,7 @@ session_start();
     <?php
     }else if($css == "catalogo"){
         ?>
-        <link rel="stylesheet" href="static/css/catalog.css">
+        <link rel="stylesheet" href="static/css/catalogo.css">
     <?php
     }else if($css == "producto"){
         ?>
@@ -87,7 +88,7 @@ session_start();
 <header>
 <div class="logo">
             <a href="index.php" id="logo-menu">
-                <img src="static/img/logo-indice.png" width="55" height="40">
+                <img src="static/img/logo-indice.webp" width="55" height="40">
             </a>
         </div>
 <nav class="navbar">

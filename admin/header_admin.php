@@ -17,10 +17,11 @@ if($_SESSION["rol"] != "admin")
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto Entorno Servidor</title>
-    
-    <link rel="stylesheet" href="../static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../static/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../static/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="../static/fontawesome/css/brands.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/catalog.css">
+    <link rel="stylesheet" href="../static/css/catalogo.css">
     <link rel="stylesheet" href="../static/css/formularios-admin.css">
 </head>
 
@@ -29,7 +30,7 @@ if($_SESSION["rol"] != "admin")
 <header>
 <div class="logo">
             <a href="../index.php" id="logo-menu">
-                <img src="../static/img/logo-indice.png" width="55" height="40">
+                <img src="../static/img/logo-indice.webp" width="55" height="40">
             </a>
         </div>
         <div class="header-admin">

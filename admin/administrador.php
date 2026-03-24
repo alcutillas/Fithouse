@@ -77,7 +77,7 @@ function ofertaActiva($producto) {
                     </div>
                 </div>
 
-<a href="../producto.php?id=<?= $producto['id_producto']; ?>" class="product-card">
+<a href="../producto.php?id=<?= $producto['id_producto']; ?>" style="text-decoration: none; color: inherit;">
         <div class="img-container">
             <img loading="lazy" src="../static/img/productos/<?= htmlspecialchars($producto['imagen']); ?>" alt="Imagen">
         </div>

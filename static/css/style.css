@@ -1,6 +1,33 @@
 @font-face {
-    font-family: "Raleway";
-    src: url(../fonts/DM_Sans/static/DMSans-Regular.ttf);
+    font-family: 'DM Sans';
+    src: url('../../fonts/DM_Sans/dm-sans-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../../fonts/DM_Sans/dm-sans-semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../../fonts/DM_Sans/dm-sans-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('../../fonts/DM_Sans/dm-sans-medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
 
 * {
@@ -9,7 +36,7 @@
 }
 
 body {
-    font-family: "Raleway";
+    font-family: 'DM Sans', sans-serif;
 }
 
 /*==========Header============*/
@@ -287,7 +314,7 @@ footer>#section-redes {
 /*==============Cabecera-Main-Presentacion====================*/
 
 #fondo-informacion {
-    background-image: url("../img/fondo-index.jpg");
+    background-image: url("../img/fondo-index.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -313,7 +340,7 @@ footer>#section-redes {
 
 @media screen and (max-width:1165px) {
     #fondo-informacion {
-        background-image: url("../img/fondo-index-tablet.png");
+        background-image: url("../img/fondo-index-tablet.webp");
         padding: 100px 0 650px 0;
         display: flex;
         justify-content: center;
@@ -326,7 +353,7 @@ footer>#section-redes {
 
 @media screen and (max-width:768px) {
     #fondo-informacion {
-        background-image: url("../img/fondo-index-movil.png");
+        background-image: url("../img/fondo-index-movil.webp");
         padding: 100px 0 550px 0;
     }
 }

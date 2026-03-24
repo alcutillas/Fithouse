@@ -70,13 +70,17 @@ foreach($productos as $producto):
         </div>
 
         <h3><?= htmlspecialchars($producto['nombre_producto']); ?></h3>
-        <span><?= htmlspecialchars($producto['marca']); ?></span><br>
+        <span><?= htmlspecialchars($producto['marca']); ?></span>
 
         <?php if ($tieneOferta): ?>
-            <p class="precio">
-                <span class="precio-original">$<?= number_format($producto['precio'], 2); ?></span>
-                <span class="precio-oferta">$<?= number_format($producto['precio_oferta'], 2); ?></span>
-            </p>
+            <div class="precio precio-oferta-wrap">
+                <div class="precio-col-izq">
+                    <span class="precio-original">$<?= number_format($producto['precio'], 2); ?></span>
+                </div>
+                <div class="precio-col-der">
+                    <span class="precio-oferta">$<?= number_format($producto['precio_oferta'], 2); ?></span>
+                </div>
+            </div>
 
             <span class="badge-oferta">-<?= $descuento; ?>%</span>
 
