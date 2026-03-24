@@ -1,5 +1,4 @@
 <?php
-// acciones/actualizar_carrito.php
 session_start();
 require_once("../configuracion.php");
 require_once("../conexion.php");

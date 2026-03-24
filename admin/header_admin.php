@@ -21,6 +21,7 @@ if($_SESSION["rol"] != "admin")
     <link rel="stylesheet" href="../static/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/catalog.css">
+    <link rel="stylesheet" href="../static/css/formularios-admin.css">
 </head>
 
 <body>

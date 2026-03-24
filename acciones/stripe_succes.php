@@ -55,6 +55,7 @@ try {
         'pendiente'
     );
 
+    guardarDatosUsuarioCheckout($conexion, $datosCheckout);
     limpiarCheckoutSesion();
 
     header("Location: ../checkout.php?pagado=1&pedido=" . $idPedido);

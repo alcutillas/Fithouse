@@ -6,13 +6,12 @@ require_once("../funciones.php");
 
 $items = obtenerItemsCarrito($conexion);
 $datosCheckout = obtenerDatosCheckoutSesion();
+$carrito = obtenerCarritoActivo($conexion);
 
-if (!$items || !$datosCheckout) {
+if (!$carrito || !$items || !$datosCheckout) {
     header("Location: ../checkout.php");
     exit;
 }
-
-$carrito = obtenerCarritoActivo($conexion);
 
 $params = [
     'mode' => 'payment',

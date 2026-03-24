@@ -18,6 +18,19 @@ if (!$producto || !isset($producto[0])) {
 
 $producto = $producto[0];
 
+function ofertaActiva($producto) {
+    if (empty($producto['precio_oferta'])) {
+        return false;
+    }
+
+    $ahora = time();
+
+    $inicioValido = empty($producto['oferta_inicio']) || strtotime($producto['oferta_inicio']) <= $ahora;
+    $finValido = empty($producto['oferta_fin']) || strtotime($producto['oferta_fin']) >= $ahora;
+
+    return $inicioValido && $finValido && $producto['precio_oferta'] < $producto['precio'];
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["form_tipo"]) && $_POST["form_tipo"] === "resena") {
     if (!isset($_SESSION['id_usuario'])) {
         header("Location: iniciarsesion.php");
@@ -41,6 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["form_tipo"]) && $_POS
 }
 
 $resenas = obtenerResenas($conexion, $idProducto);
+$tieneOferta = ofertaActiva($producto);
+$descuento = $tieneOferta ? round((($producto['precio'] - $producto['precio_oferta']) / $producto['precio']) * 100) : 0;
 ?>
 
 <main id="producto-detalle">
@@ -62,13 +77,40 @@ $resenas = obtenerResenas($conexion, $idProducto);
                 <p class="categoria"><strong>Categoría:</strong> <?php echo htmlspecialchars($producto['nombre_categoria']); ?></p>
             <?php endif; ?>
 
-            <p class="precio">$<?php echo number_format((float)$producto['precio'], 2); ?></p>
+            <?php if ($tieneOferta): ?>
+                <p class="precio">
+                    <span class="precio-original">$<?php echo number_format((float)$producto['precio'], 2); ?></span>
+                    <span class="precio-oferta">$<?php echo number_format((float)$producto['precio_oferta'], 2); ?></span>
+                    <span class="badge-oferta">-<?php echo $descuento; ?>%</span>
+                </p>
+
+                <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
+                    <p class="oferta-fechas">
+                        Oferta
+                        <?php if (!empty($producto['oferta_inicio'])): ?>
+                            desde <?php echo date('d/m/Y H:i', strtotime($producto['oferta_inicio'])); ?>
+                        <?php endif; ?>
+                        <?php if (!empty($producto['oferta_fin'])): ?>
+                            hasta <?php echo date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
+                        <?php endif; ?>
+                    </p>
+                <?php endif; ?>
+            <?php else: ?>
+                <p class="precio">
+                    <span class="precio-normal">$<?php echo number_format((float)$producto['precio'], 2); ?></span>
+                </p>
+            <?php endif; ?>
+
             <p class="descripcion"><?php echo nl2br(htmlspecialchars($producto['descripcion'])); ?></p>
 
             <?php if (isset($producto['cantidad_existencias'])): ?>
                 <p class="stock">
                     <strong>Stock disponible:</strong> <?php echo (int) $producto['cantidad_existencias']; ?>
                 </p>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
+                <p class="error-resena">No se pudo añadir el producto al carrito.</p>
             <?php endif; ?>
 
             <?php if (isset($producto['cantidad_existencias']) && (int)$producto['cantidad_existencias'] > 0): ?>
@@ -125,7 +167,6 @@ $resenas = obtenerResenas($conexion, $idProducto);
 
                 <button type="submit" class="btn-principal">Enviar reseña</button>
             </form>
-            
         </div>
 
         <div class="lista-resenas">
@@ -158,8 +199,6 @@ $resenas = obtenerResenas($conexion, $idProducto);
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-
-        
     </section>
 </main>
 

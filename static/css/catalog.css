@@ -1,219 +1,118 @@
-/*Filtros*/
+#catalogo {
+    background: #fdfdfd;
+    color: white;
+    min-height: 100vh;
+    padding: 30px 40px 60px;
+}
 
 .filtros-inline {
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    align-items: center;
-    background: #000000;
-    padding: 10px 15px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
-.filtros-inline select {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    font-size: 13px;
+.filtros-inline select,
+.filtros-inline input[type="text"] {
     min-width: 140px;
-    cursor: pointer;
-    transition: 0.2s ease;
+    height: 40px;
+    border: 1px solid rgba(245, 196, 0, 0.61);
+    border-radius: 8px;
+    padding: 0 12px;
+    background: #000000;
+    color: #ffffff;
+    font-family: inherit;
 }
 
-.filtros-inline select:focus {
-    outline: none;
-    border-color: rgb(255, 196, 0);
+.filtros-inline button,
+.filtros-inline a {
+    height: 40px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
 }
 
 .btn-filtrar {
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: none;
-    background: rgb(255, 196, 0);
-    color: white;
-    font-size: 13px;
+    background: #f5c400;
+    color: #111;
     cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.btn-filtrar:hover {
-    background: rgb(236, 181, 0);
 }
 
 .btn-resetear {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 6px;
-    background: #ccc;
-    color: #000;
-    text-decoration: none;
+    background: #000000;
+    color: #f5c400;
 }
 
-.btn-resetear:hover {
-    background: #bbb;
-}
-
-
-/*Productos*/
-/* CONTENEDOR PRINCIPAL */
 .productos-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+    gap: 44px;
+    justify-content: center;
 }
 
-.product-card,
-.product-card p,
-
-
-/*Panel de admin*/
-.admin-card {
-    position: relative;
-    padding-top: 40px;
+.product-card:hover .precio-oferta {
+    transform: scale(1.05);
+    transition: 0.2s ease;
 }
 
-.admin-actions {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    gap: 8px;
+@media (max-width: 768px) {
+    #catalogo {
+        padding: 20px 16px 40px;
+    }
+
+    .productos-container {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .img-container {
+        height: 210px;
+    }
 }
-
-.btn-editar,
-.btn-borrar {
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #fff;
-    font-size: 13px;
-}
-
-.btn-editar {
-    background-color: #007bff;
-}
-
-.btn-borrar {
-    background-color: #dc3545;
-}
-
-.product-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-
-/*Panel Edicion*/
-
-/* Contenedor principal */
-#editar {
-    max-width: 600px;
-    margin: 40px auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-}
-
-/* Título */
-#editar h1 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 26px;
-    font-weight: 700;
-    color: #333;
-}
-
-/* Formulario */
-#editar form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-/* Etiquetas */
-#editar label {
-    font-weight: 600;
-    color: #444;
-}
-
-/* Inputs y textarea */
-#editar input[type="text"],
-#editar input[type="number"],
-#editar textarea,
-#editar input[type="file"] {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: border-color .2s ease;
-}
-
-#editar input:focus,
-#editar textarea:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-/* Imagen actual */
-#editar img {
-    border-radius: 8px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-}
-
-/* Botones */
-.btn-edit,
-.btn-save {
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background .2s ease;
-}
-
-/* Botón cancelar */
-.btn-edit {
-    background: #ccc;
-    color: #333;
-}
-
-.btn-edit:hover {
-    background: #b3b3b3;
-}
-
-/* Botón guardar */
-.btn-save {
-    background: #007bff;
-    color: #fff;
-}
-
-.btn-save:hover {
-    background: #0062cc;
-}
-
-/* Botón crear */
 
 .btn-nuevo {
-    background: #1aff00;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background .2s ease;
-    text-decoration: none;
+    background-color: greenyellow;
+    color: white;
 }
 
 .btn-nuevo:hover {
-    background: #00c317;
+    background-color: #4ef700;
+}
+
+/*Paginacion*/
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 35px 0 10px;
+}
+
+.paginacion a {
+    text-decoration: none;
+    background: #111;
+    color: #f5c400;
+    border: 1px solid rgba(245, 196, 0, 0.35);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.paginacion a:hover {
+    background: #f5c400;
+    color: #111;
+}
+
+.paginacion a.activa {
+    background: #f5c400;
+    color: #111;
+    border-color: #f5c400;
 }

@@ -38,11 +38,10 @@ function generarSelect($conexion, $tabla, $columna_id, $columna_nombre, $nombreS
     return $html;
 }
 
-function productos($conexion, $id_categoria = "todas", $marca = "todas", $precio = "todas", $busqueda = "") {
-    // Usamos JOIN para traer el nombre de la categoría aunque filtremos por ID
+function productos($conexion, $id_categoria = "todas", $marca = "todas", $precio = "todas", $busqueda = "", $limit = 8, $offset = 0) {
     $sql = "SELECT p.*, c.nombre_categoria 
             FROM productos p 
-            LEFT JOIN categorias c ON p.id_categoria = c.id_categoria 
+            LEFT JOIN categorias c ON p.id_categoria = c.id_categoria
             WHERE 1=1";
     $params = [];
 
@@ -61,11 +60,26 @@ function productos($conexion, $id_categoria = "todas", $marca = "todas", $precio
         $params[':busqueda'] = "%$busqueda%";
     }
 
-    if ($precio === "asc") { $sql .= " ORDER BY p.precio ASC"; } 
-    elseif ($precio === "desc") { $sql .= " ORDER BY p.precio DESC"; }
+    if ($precio === "asc") {
+        $sql .= " ORDER BY p.precio ASC";
+    } elseif ($precio === "desc") {
+        $sql .= " ORDER BY p.precio DESC";
+    } else {
+        $sql .= " ORDER BY p.id_producto DESC";
+    }
+
+    $sql .= " LIMIT :limit OFFSET :offset";
 
     $stmt = $conexion->prepare($sql);
-    $stmt->execute($params);
+
+    foreach ($params as $clave => $valor) {
+        $stmt->bindValue($clave, $valor);
+    }
+
+    $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+
+    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -85,6 +99,34 @@ function buscarProducto($conexion, $idProducto){
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function contarProductos($conexion, $id_categoria = "todas", $marca = "todas", $busqueda = "") {
+    $sql = "SELECT COUNT(*) 
+            FROM productos p
+            LEFT JOIN categorias c ON p.id_categoria = c.id_categoria
+            WHERE 1=1";
+    $params = [];
+
+    if ($id_categoria !== "todas" && !empty($id_categoria)) {
+        $sql .= " AND p.id_categoria = :id_cat";
+        $params[':id_cat'] = $id_categoria;
+    }
+
+    if ($marca !== "todas" && !empty($marca)) {
+        $sql .= " AND p.marca = :marca";
+        $params[':marca'] = $marca;
+    }
+
+    if (!empty($busqueda)) {
+        $sql .= " AND (p.nombre_producto LIKE :busqueda OR p.descripcion LIKE :busqueda)";
+        $params[':busqueda'] = "%$busqueda%";
+    }
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute($params);
+
+    return (int) $stmt->fetchColumn();
+}
+
 function obtenerResenas($conexion, $idProducto){
     $sql = "SELECT r.puntuacion, r.comentario, r.fecha_resena, u.nombre
             FROM resenas r
@@ -102,12 +144,17 @@ function obtenerResenas($conexion, $idProducto){
 }
 
 function crearResena($conexion, $idProducto, $idUsuario, $puntuacion, $comentario) {
-    
     if ($puntuacion < 1 || $puntuacion > 5) return false;
 
     try {
-        $sql = "INSERT INTO resenas (id_producto, id_usuario, puntuacion, comentario, fecha_resena)
-                VALUES (:id_producto, :id_usuario, :puntuacion, :comentario, NOW())";
+
+        $sql = "INSERT INTO resenas 
+                (id_producto, id_usuario, puntuacion, comentario, fecha_resena)
+                VALUES (:id_producto, :id_usuario, :puntuacion, :comentario, NOW())
+                ON DUPLICATE KEY UPDATE
+                    puntuacion = VALUES(puntuacion),
+                    comentario = VALUES(comentario),
+                    fecha_resena = NOW()";
 
         $stmt = $conexion->prepare($sql);
 
@@ -250,7 +297,7 @@ function agregarProductoAlCarrito(PDO $conexion, int $idProducto, int $cantidad)
     }
 
     $stmt = $conexion->prepare("
-        SELECT id_producto, precio, cantidad_existencias
+        SELECT id_producto, precio, precio_oferta, oferta_inicio, oferta_fin, cantidad_existencias
         FROM productos
         WHERE id_producto = ?
         LIMIT 1
@@ -269,6 +316,8 @@ function agregarProductoAlCarrito(PDO $conexion, int $idProducto, int $cantidad)
     if ($cantidad > (int) $producto['cantidad_existencias']) {
         $cantidad = (int) $producto['cantidad_existencias'];
     }
+
+    $precioUnitario = precioFinalProducto($producto);
 
     $carrito = obtenerOCrearCarritoActivo($conexion);
 
@@ -290,10 +339,10 @@ function agregarProductoAlCarrito(PDO $conexion, int $idProducto, int $cantidad)
 
         $up = $conexion->prepare("
             UPDATE detalle_carrito
-            SET cantidad = ?
+            SET cantidad = ?, precio_unitario = ?
             WHERE id_detalle_carrito = ?
         ");
-        $up->execute([$nuevaCantidad, $detalle['id_detalle_carrito']]);
+        $up->execute([$nuevaCantidad, $precioUnitario, $detalle['id_detalle_carrito']]);
     } else {
         $ins = $conexion->prepare("
             INSERT INTO detalle_carrito (id_carrito, id_producto, cantidad, precio_unitario)
@@ -303,7 +352,7 @@ function agregarProductoAlCarrito(PDO $conexion, int $idProducto, int $cantidad)
             $carrito['id_carrito'],
             $idProducto,
             $cantidad,
-            $producto['precio']
+            $precioUnitario
         ]);
     }
 
@@ -677,6 +726,35 @@ function guardarDatosUsuarioCheckout(PDO $conexion, array $datos): void
         trim($datos['cp'] ?? ''),
         $idUsuario
     ]);
+}
+
+function productoOfertaActiva(array $producto): bool
+{
+    if (
+        !isset($producto['precio_oferta']) ||
+        $producto['precio_oferta'] === null ||
+        $producto['precio_oferta'] === ''
+    ) {
+        return false;
+    }
+
+    $ahora = time();
+
+    $inicioValido = empty($producto['oferta_inicio']) || strtotime($producto['oferta_inicio']) <= $ahora;
+    $finValido = empty($producto['oferta_fin']) || strtotime($producto['oferta_fin']) >= $ahora;
+
+    return $inicioValido
+        && $finValido
+        && (float) $producto['precio_oferta'] < (float) $producto['precio'];
+}
+
+function precioFinalProducto(array $producto): float
+{
+    if (productoOfertaActiva($producto)) {
+        return (float) $producto['precio_oferta'];
+    }
+
+    return (float) $producto['precio'];
 }
 ?>
 

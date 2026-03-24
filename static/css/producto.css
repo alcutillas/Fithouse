@@ -29,7 +29,7 @@ body {
     grid-template-columns: minmax(260px, 380px) 1fr;
     gap: 40px;
     align-items: center;
-    background: #ffffff;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
     border: 2px solid #f0b400;
     border-radius: 24px;
     padding: 36px;
@@ -39,10 +39,10 @@ body {
 /* IMAGEN */
 .producto-img {
     width: 100%;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    background: white;
     border: 2px solid #f0b400;
     border-radius: 18px;
-    padding: 14px;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,8 +51,6 @@ body {
 
 .producto-img img {
     width: 100%;
-    max-width: 280px;
-    max-height: 220px;
     height: auto;
     object-fit: contain;
     display: block;
@@ -73,7 +71,7 @@ body {
 
 .producto-info .marca {
     display: inline-block;
-    color: #666666;
+    color: #f0b400;
     font-size: 0.95rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -84,7 +82,7 @@ body {
     margin: 0;
     font-size: clamp(2.1rem, 4vw, 3.2rem);
     line-height: 1.08;
-    color: #111111;
+    color: #ffffff;
     font-weight: 800;
 }
 
@@ -94,7 +92,7 @@ body {
 
 .producto-info .categoria {
     font-size: 1.08rem;
-    color: #333333;
+    color: #ffffff;
 }
 
 .producto-info .categoria strong,
@@ -123,7 +121,7 @@ body {
 .producto-info .stock {
     font-size: 1.05rem;
     font-weight: 700;
-    color: #111111;
+    color: #ffffff;
 }
 
 .sin-stock {

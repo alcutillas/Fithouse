@@ -9,18 +9,24 @@ header('Content-Type: application/json');
 try {
     $items = obtenerItemsCarrito($conexion);
     $datosCheckout = obtenerDatosCheckoutSesion();
+    $carrito = obtenerCarritoActivo($conexion);
 
-    if (!$items || !$datosCheckout) {
+    if (!$carrito || !$items || !$datosCheckout) {
         throw new RuntimeException('Checkout incompleto');
     }
 
     $total = number_format(obtenerTotalCarrito($conexion), 2, '.', '');
+
+    if ((float) $total <= 0) {
+        throw new RuntimeException('El total del carrito no es válido');
+    }
+
     $token = paypalAccessToken();
 
     $payload = [
         'intent' => 'CAPTURE',
         'purchase_units' => [[
-            'reference_id' => (string) (obtenerCarritoActivo($conexion)['id_carrito'] ?? 'carrito'),
+            'reference_id' => (string) $carrito['id_carrito'],
             'amount' => [
                 'currency_code' => CURRENCY,
                 'value' => $total

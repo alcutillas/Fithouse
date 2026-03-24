@@ -1,0 +1,204 @@
+#editar,
+#borrar {
+    min-height: 100vh;
+    background: #0b0b0b;
+    color: #fff;
+    padding: 50px 20px 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#editar h1,
+#borrar h1 {
+    color: #f5c400;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 0 14px rgba(245, 196, 0, 0.2);
+}
+
+#editar form,
+#borrar form {
+    width: 100%;
+    max-width: 720px;
+    background: linear-gradient(180deg, #151515 0%, #0d0d0d 100%);
+    border: 2px solid rgba(245, 196, 0, 0.22);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+#editar label,
+#borrar label {
+    display: block;
+    color: #f5c400;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 18px;
+}
+
+#editar input[type="text"],
+#editar input[type="number"],
+#editar input[type="datetime-local"],
+#editar input[type="file"],
+#editar textarea,
+#editar select {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(245, 196, 0, 0.28);
+    border-radius: 10px;
+    background: #111;
+    color: #fff;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#editar input[type="text"]:focus,
+#editar input[type="number"]:focus,
+#editar input[type="datetime-local"]:focus,
+#editar input[type="file"]:focus,
+#editar textarea:focus,
+#editar select:focus {
+    border-color: #f5c400;
+    box-shadow: 0 0 0 3px rgba(245, 196, 0, 0.12);
+}
+
+#editar textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+#editar img {
+    display: block;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: 2px solid rgba(245, 196, 0, 0.2);
+    max-width: 180px;
+    height: auto;
+}
+
+#editar p {
+    color: #cfcfcf;
+    margin-top: 8px;
+}
+
+#editar .botones-form,
+#borrar .botones-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 28px;
+}
+
+#editar .btn-save,
+#editar .btn-edit,
+#borrar .btn-borrar,
+#borrar .btn-editar,
+#editar a.btn-edit {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+#editar .btn-save {
+    background: #f5c400;
+    color: #111;
+}
+
+#editar .btn-edit,
+#editar a.btn-edit,
+#borrar .btn-editar {
+    background: #d9d9d9;
+    color: #111;
+}
+
+#borrar .btn-borrar {
+    background: #d9534f;
+    color: #fff;
+}
+
+#editar .btn-save:hover,
+#editar .btn-edit:hover,
+#editar a.btn-edit:hover,
+#borrar .btn-borrar:hover,
+#borrar .btn-editar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+#borrar strong {
+    display: block;
+    width: 100%;
+    max-width: 720px;
+    background: #111;
+    border: 1px solid rgba(245, 196, 0, 0.2);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    color: #e7e7e7;
+    line-height: 1.7;
+    box-sizing: border-box;
+}
+
+#borrar form label {
+    color: #e7e7e7;
+    font-weight: 600;
+    margin: 0;
+}
+
+#borrar form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+#editar #nueva_cat_input {
+    margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+
+    #editar,
+    #borrar {
+        padding: 30px 14px 50px;
+    }
+
+    #editar h1,
+    #borrar h1 {
+        font-size: 1.6rem;
+    }
+
+    #editar form,
+    #borrar form,
+    #borrar strong {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    #editar .botones-form,
+    #borrar .botones-form {
+        flex-direction: column;
+    }
+
+    #editar .btn-save,
+    #editar .btn-edit,
+    #editar a.btn-edit,
+    #borrar .btn-borrar,
+    #borrar .btn-editar {
+        width: 100%;
+    }
+}

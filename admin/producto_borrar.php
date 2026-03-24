@@ -2,75 +2,94 @@
 include 'header_admin.php'; 
 require_once '../conexion.php';
 
-// Si no llega ID, volvemos al panel
-if (!isset($_GET["id"])) {
+if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
     header("Location: administrador.php");
     exit;
 }
 
-// Botón cancelar
+$idProducto = (int) $_GET["id"];
+
+$stmt = $conexion->prepare("SELECT nombre_producto, imagen FROM productos WHERE id_producto = ?");
+$stmt->execute([$idProducto]);
+$producto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$producto) {
+    header("Location: administrador.php");
+    exit;
+}
+
+$mensajeError = "";
+
 if (isset($_POST["cancelar"])) {
     header("Location: administrador.php");
     exit;
 }
 
-// Botón borrar
 if (isset($_POST["borrar"])) {
-
-    // 1. Buscar la imagen del producto
-    $consulta = "SELECT imagen FROM productos WHERE id_producto = ?";
-    $stmt = $conexion->prepare($consulta);
-
     try {
-        $stmt->execute([$_GET["id"]]);
-    } catch (Exception $e) {
-        echo "Error al buscar la imagen del producto";
-    }
+        $stmt = $conexion->prepare("SELECT COUNT(*) FROM detalle_pedido WHERE id_producto = ?");
+        $stmt->execute([$idProducto]);
+        $tienePedidos = (int) $stmt->fetchColumn() > 0;
 
-    $resultado = $stmt->fetch();
-    $nombreImagen = $resultado['imagen'] ?? null;
+        if ($tienePedidos) {
+            $mensajeError = "No se puede borrar este producto porque tiene pedidos asociados.";
+        } else {
+            $conexion->beginTransaction();
 
-    // 2. Borrar el producto
-    $consulta = "DELETE FROM productos WHERE id_producto = ?";
-    $stmt = $conexion->prepare($consulta);
+            $stmt = $conexion->prepare("DELETE FROM resenas WHERE id_producto = ?");
+            $stmt->execute([$idProducto]);
 
-    try {
-        $stmt->execute([$_GET["id"]]);
-    } catch (Exception $e) {
-        echo "Error al borrar el producto";
-    }
+            $stmt = $conexion->prepare("DELETE FROM detalle_carrito WHERE id_producto = ?");
+            $stmt->execute([$idProducto]);
 
-    // 3. Borrar la imagen si existe
-    if ($nombreImagen) {
-        $directorio = $_SERVER['DOCUMENT_ROOT'] . "/Fithouse/static/img/productos";
-        $rutaCompleta = $directorio . "/" . $nombreImagen;
+            $stmt = $conexion->prepare("DELETE FROM productos WHERE id_producto = ?");
+            $stmt->execute([$idProducto]);
 
-        if (file_exists($rutaCompleta)) {
-            unlink($rutaCompleta);
+            $conexion->commit();
+
+            if (!empty($producto['imagen'])) {
+                $rutaImagen = dirname(__DIR__) . "/static/img/productos/" . $producto['imagen'];
+                if (file_exists($rutaImagen)) {
+                    unlink($rutaImagen);
+                }
+            }
+
+            header("Location: administrador.php?msg=eliminado");
+            exit;
         }
+    } catch (Throwable $e) {
+        if ($conexion->inTransaction()) {
+            $conexion->rollBack();
+        }
+        $mensajeError = "Error al borrar el producto: " . $e->getMessage();
     }
-
-    // 4. Volver al panel
-    header("Location: administrador.php?msg=eliminado");
-    exit;
 }
 ?>
 
 <main id="borrar" style="min-height:75vh">
     <h1>Borrar producto (admin)</h1>
+
     <strong>
-    <?php
-    echo "ID: " . $_GET["id"];
-    echo "<br>Nombre: " . $_GET["nombre_producto"];
-    ?>
+        <?= "ID: " . $idProducto; ?>
+        <br>
+        <?= "Nombre: " . htmlspecialchars($producto["nombre_producto"]); ?>
     </strong>
+
+    <?php if (!empty($mensajeError)): ?>
+        <p style="color:#ff6b6b; margin:15px 0; font-weight:700;">
+            <?= htmlspecialchars($mensajeError); ?>
+        </p>
+    <?php endif; ?>
+
     <form action="" method="post">
         <label>
             ¿Estás seguro de que deseas borrar el producto?
         </label>
 
-        <input type="submit" class="btn-editar" value="Cancelar" name="cancelar">
-        <input type="submit" class="btn-borrar" value="Borrar" name="borrar">
+        <div class="botones-form">
+            <input type="submit" class="btn-editar" value="Cancelar" name="cancelar">
+            <input type="submit" class="btn-borrar" value="Borrar" name="borrar">
+        </div>
     </form>
 </main>
 
