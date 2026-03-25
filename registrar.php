@@ -49,6 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <main>
+    <div class="particulas-neon"></div>
+<div class="logo-neon"></div>
+<div class="trazo-neon-1"></div>
+<div class="trazo-neon-2"></div>
+<div class="trazo-neon-3"></div>
     <div class="form">
         <form method="post" action="">
             <input type="text" placeholder="Nombre completo" name="nombre" required>

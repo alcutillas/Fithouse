@@ -1,52 +1,648 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-main{
-  min-height: 64vh;
+main {
+  position: relative;
+  min-height: 95vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 20%, rgba(255, 193, 7, 0.06), transparent 18%),
+    radial-gradient(circle at 78% 76%, rgba(255, 193, 7, 0.05), transparent 22%),
+    #000000;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
 }
 
-main > div{
-    margin: 30px auto;
-    width: 400px;
+/* niebla base */
+main::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 18% 58%, rgba(255, 193, 7, 0.12), transparent 14%),
+    radial-gradient(circle at 36% 30%, rgba(255, 193, 7, 0.08), transparent 16%),
+    radial-gradient(circle at 58% 48%, rgba(255, 193, 7, 0.09), transparent 18%),
+    radial-gradient(circle at 82% 34%, rgba(255, 193, 7, 0.08), transparent 14%),
+    radial-gradient(circle at 88% 74%, rgba(255, 193, 7, 0.07), transparent 16%);
+  filter: blur(58px);
+  opacity: 0.9;
+  animation: nieblaFlotante 18s ease-in-out infinite alternate;
 }
 
-.form h2 {
-  margin-bottom: 20px;
+/* recorrido angular, roto y conectado */
+main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(122deg,
+      transparent 0 47.8%,
+      rgba(255, 193, 7, 0.98) 48.3%,
+      rgba(255, 193, 7, 0.15) 48.9%,
+      transparent 49.6%) no-repeat,
+
+    linear-gradient(36deg,
+      transparent 0 47.9%,
+      rgba(255, 193, 7, 0.94) 48.4%,
+      rgba(255, 193, 7, 0.14) 49%,
+      transparent 49.7%) no-repeat,
+
+    linear-gradient(148deg,
+      transparent 0 47.6%,
+      rgba(255, 193, 7, 0.92) 48.2%,
+      rgba(255, 193, 7, 0.13) 48.8%,
+      transparent 49.5%) no-repeat,
+
+    linear-gradient(70deg,
+      transparent 0 47.8%,
+      rgba(255, 193, 7, 0.96) 48.4%,
+      rgba(255, 193, 7, 0.13) 49%,
+      transparent 49.8%) no-repeat,
+
+    linear-gradient(160deg,
+      transparent 0 47.7%,
+      rgba(255, 193, 7, 0.88) 48.2%,
+      rgba(255, 193, 7, 0.12) 48.8%,
+      transparent 49.6%) no-repeat,
+
+    linear-gradient(22deg,
+      transparent 0 47.8%,
+      rgba(255, 193, 7, 0.9) 48.3%,
+      rgba(255, 193, 7, 0.11) 48.9%,
+      transparent 49.7%) no-repeat,
+
+    linear-gradient(122deg,
+      transparent 0 48.5%,
+      rgba(255, 193, 7, 0.45) 48.9%,
+      transparent 49.4%) no-repeat,
+    linear-gradient(36deg,
+      transparent 0 48.5%,
+      rgba(255, 193, 7, 0.42) 48.9%,
+      transparent 49.4%) no-repeat,
+    linear-gradient(148deg,
+      transparent 0 48.5%,
+      rgba(255, 193, 7, 0.4) 48.9%,
+      transparent 49.4%) no-repeat,
+
+    linear-gradient(rgba(255, 193, 7, 0.96), rgba(255, 193, 7, 0.96)) no-repeat,
+    linear-gradient(rgba(255, 193, 7, 0.92), rgba(255, 193, 7, 0.92)) no-repeat,
+    linear-gradient(rgba(255, 193, 7, 0.9), rgba(255, 193, 7, 0.9)) no-repeat,
+    linear-gradient(rgba(255, 193, 7, 0.88), rgba(255, 193, 7, 0.88)) no-repeat,
+    linear-gradient(rgba(255, 193, 7, 0.95), rgba(255, 193, 7, 0.95)) no-repeat,
+
+    radial-gradient(circle at 22% 52%, rgba(255, 193, 7, 0.16), transparent 18%) no-repeat,
+    radial-gradient(circle at 52% 42%, rgba(255, 193, 7, 0.14), transparent 18%) no-repeat,
+    radial-gradient(circle at 78% 60%, rgba(255, 193, 7, 0.16), transparent 18%) no-repeat;
+
+  background-size:
+    520px 520px,
+    440px 440px,
+    480px 480px,
+    460px 460px,
+    420px 420px,
+    500px 500px,
+
+    520px 520px,
+    440px 440px,
+    480px 480px,
+
+    14px 14px,
+    16px 16px,
+    12px 12px,
+    14px 14px,
+    16px 16px,
+
+    260px 260px,
+    300px 300px,
+    280px 280px;
+
+  background-position:
+    8% 56%,
+    27% 28%,
+    43% 46%,
+    61% 24%,
+    69% 62%,
+    84% 38%,
+
+    10% 60%,
+    29% 31%,
+    45% 49%,
+
+    24% 44%,
+    41% 33%,
+    58% 51%,
+    73% 40%,
+    86% 55%,
+
+    22% 52%,
+    52% 42%,
+    78% 60%;
+
+  filter:
+    drop-shadow(0 0 5px rgba(255, 193, 7, 0.45)) drop-shadow(0 0 16px rgba(255, 193, 7, 0.18));
+  opacity: 0.95;
+  animation: lineasRespiran 7s ease-in-out infinite alternate;
 }
 
-form input,
-form textarea {
+/* capa de partículas */
+.particulas-neon,
+.particulas-neon::before,
+.particulas-neon::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.particulas-neon {
+  z-index: 2;
+  background:
+    radial-gradient(circle, rgba(255, 193, 7, 0.95) 0 2px, transparent 3px) 8% 16% / 180px 180px repeat,
+    radial-gradient(circle, rgba(255, 193, 7, 0.75) 0 1.5px, transparent 3px) 22% 74% / 220px 220px repeat,
+    radial-gradient(circle, rgba(255, 193, 7, 0.55) 0 2px, transparent 3px) 64% 28% / 200px 200px repeat;
+  opacity: 0.45;
+  filter: blur(0.3px) drop-shadow(0 0 6px rgba(255, 193, 7, 0.3));
+  animation: particulasLentas 24s linear infinite;
+}
+
+.particulas-neon::before {
+  background:
+    radial-gradient(circle, rgba(255, 193, 7, 0.8) 0 2px, transparent 3px) 12% 48% / 240px 240px repeat,
+    radial-gradient(circle, rgba(255, 193, 7, 0.55) 0 1.5px, transparent 3px) 72% 14% / 190px 190px repeat;
+  opacity: 0.4;
+  animation: particulasRapidas 14s linear infinite;
+}
+
+.particulas-neon::after {
+  background:
+    radial-gradient(circle, rgba(255, 193, 7, 0.7) 0 2px, transparent 3px) 18% 26% / 260px 260px repeat,
+    radial-gradient(circle, rgba(255, 193, 7, 0.5) 0 1.5px, transparent 3px) 82% 76% / 210px 210px repeat;
+  opacity: 0.28;
+  animation: particulasVerticales 20s linear infinite;
+}
+
+/* logo metido en una pieza angular */
+.logo-neon {
+  position: absolute;
+  top: 22%;
+  right: 13%;
+  width: 250px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 200;
+  background:
+    linear-gradient(135deg,
+      rgba(255, 193, 7, 0.08),
+      rgba(255, 193, 7, 0.02));
+  clip-path: polygon(12% 0, 100% 0, 86% 100%, 0 100%);
+  border: 2px solid rgba(255, 193, 7, 0.72);
+  box-shadow:
+    inset 0 0 18px rgba(255, 193, 7, 0.08),
+    0 0 18px rgba(255, 193, 7, 0.18),
+    0 0 42px rgba(255, 193, 7, 0.1);
+  animation: logoFlota 6s ease-in-out infinite, logoParpadeo 3.8s ease-in-out infinite;
+}
+
+.logo-neon::before {
+  content: "";
+  position: absolute;
+  inset: 18px 20px 18px 30px;
+  background: url("../img/logo-indice.webp") center / contain no-repeat;
+  filter:
+    brightness(0) saturate(100%) invert(83%) sepia(85%) saturate(1419%) hue-rotate(357deg) brightness(102%) contrast(102%) drop-shadow(0 0 8px rgba(255, 193, 7, 0.72)) drop-shadow(0 0 20px rgba(255, 193, 7, 0.24));
+  opacity: 0.98;
+}
+
+.logo-neon::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 2px;
+  left: -145px;
+  top: 48%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 193, 7, 0.95),
+      rgba(255, 193, 7, 0.2),
+      transparent);
+  transform: rotate(-18deg);
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.32);
+  animation: cablePulso 5s ease-in-out infinite;
+}
+
+/* detalles rectos extra */
+.trazo-neon-1,
+.trazo-neon-2,
+.trazo-neon-3 {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  background: #ffc107;
+  box-shadow:
+    0 0 8px rgba(255, 193, 7, 0.6),
+    0 0 20px rgba(255, 193, 7, 0.2);
+}
+
+.trazo-neon-1 {
+  width: 180px;
+  height: 2px;
+  top: 31%;
+  left: 16%;
+  transform: rotate(-34deg);
+  animation: trazoVivo1 8s ease-in-out infinite;
+}
+
+.trazo-neon-2 {
+  width: 120px;
+  height: 2px;
+  top: 62%;
+  left: 58%;
+  transform: rotate(26deg);
+  animation: trazoVivo2 6.5s ease-in-out infinite;
+}
+
+.trazo-neon-3 {
+  width: 2px;
+  height: 90px;
+  top: 18%;
+  left: 70%;
+  transform: rotate(12deg);
+  animation: trazoVivo3 7.5s ease-in-out infinite;
+}
+
+main>* {
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes nieblaFlotante {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.82;
+  }
+
+  50% {
+    transform: translate3d(22px, -14px, 0) scale(1.05);
+    opacity: 0.96;
+  }
+
+  100% {
+    transform: translate3d(-18px, 20px, 0) scale(1.08);
+    opacity: 0.86;
+  }
+}
+
+@keyframes lineasRespiran {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.82;
+    filter:
+      drop-shadow(0 0 4px rgba(255, 193, 7, 0.35)) drop-shadow(0 0 12px rgba(255, 193, 7, 0.14));
+  }
+
+  50% {
+    transform: translate3d(6px, -4px, 0) scale(1.01);
+    opacity: 0.98;
+    filter:
+      drop-shadow(0 0 7px rgba(255, 193, 7, 0.52)) drop-shadow(0 0 20px rgba(255, 193, 7, 0.2));
+  }
+
+  100% {
+    transform: translate3d(-4px, 6px, 0) scale(1.015);
+    opacity: 0.9;
+    filter:
+      drop-shadow(0 0 5px rgba(255, 193, 7, 0.42)) drop-shadow(0 0 15px rgba(255, 193, 7, 0.16));
+  }
+}
+
+@keyframes particulasLentas {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-80px, -40px, 0);
+  }
+}
+
+@keyframes particulasRapidas {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  70% {
+    transform: translate3d(-140px, 60px, 0);
+  }
+
+  70% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes particulasVerticales {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(30px, -120px, 0);
+  }
+}
+
+@keyframes logoFlota {
+  0% {
+    transform: translateY(0) rotate(0.2deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-0.6deg);
+  }
+
+  80% {
+    transform: translateY(4px) rotate(0.4deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0.0deg);
+  }
+}
+
+@keyframes logoParpadeo {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 18px rgba(255, 193, 7, 0.08),
+      0 0 18px rgba(255, 193, 7, 0.18),
+      0 0 42px rgba(255, 193, 7, 0.1);
+    border-color: rgba(255, 193, 7, 0.72);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 22px rgba(255, 193, 7, 0.12),
+      0 0 24px rgba(255, 193, 7, 0.24),
+      0 0 56px rgba(255, 193, 7, 0.16);
+    border-color: rgba(255, 193, 7, 0.95);
+  }
+}
+
+@keyframes cablePulso {
+
+  0%,
+  100% {
+    opacity: 0.58;
+    width: 180px;
+  }
+
+  50% {
+    opacity: 1;
+    width: 215px;
+  }
+}
+
+@keyframes trazoVivo1 {
+
+  0%,
+  100% {
+    transform: rotate(-34deg) translateX(0);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: rotate(-34deg) translateX(20px);
+    opacity: 1;
+  }
+}
+
+@keyframes trazoVivo2 {
+
+  0%,
+  100% {
+    transform: rotate(26deg) translateX(0);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: rotate(26deg) translateX(-14px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes trazoVivo3 {
+
+  0%,
+  100% {
+    transform: rotate(12deg) translateY(0);
+    opacity: 0.6;
+    height: 90px;
+  }
+
+  50% {
+    transform: rotate(12deg) translateY(10px);
+    opacity: 1;
+    height: 115px;
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    justify-content: center;
+  }
+
+  .form {
+    left: auto !important;
+  }
+
+  .logo-neon {
+    width: 180px;
+    height: 130px;
+    top: 3%;
+    right: 4%;
+  }
+
+  .trazo-neon-1 {
+    width: 120px;
+  }
+
+  .trazo-neon-2 {
+    width: 90px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo-neon {
+    width: 140px;
+    height: 100px;
+    top: 8%;
+    right: 3%;
+  }
+
+  .trazo-neon-3 {
+    height: 50px;
+  }
+}
+
+
+
+
+
+
+
+.form {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: none;
-  background: #f2f2f2;
-  font-size: 14px;
+  max-width: 470px;
+  position: relative;
+  z-index: 100;
+  left: 20%;
 }
 
-form textarea {
-  height: 120px;
-  resize: none;
+.form::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 34px;
+  background: linear-gradient(135deg, rgba(245, 196, 0, 0.22), rgba(245, 196, 0, 0.03), rgba(255, 255, 255, 0.03));
+  filter: blur(18px);
+  opacity: 0.65;
+  z-index: -1;
 }
 
-form button {
-    margin-top: 20px;
-      width: 100%;
-  background-color: rgb(255, 196, 0);     
+.form form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 42px 34px 34px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(245, 196, 0, 0.04)),
+    rgba(8, 8, 8, 0.92);
+  border: 1px solid rgba(245, 196, 0, 0.2);
+  border-radius: 30px;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(245, 196, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.form form::before {
+  content: "Acceso";
+  display: block;
+  margin-bottom: 8px;
   color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 
-form button:hover {
-  background-color: rgb(255, 199, 15);     
+.form form::after {
+  content: "Entra en tu cuenta y sigue donde lo dejaste.";
+  display: block;
+  margin-top: -6px;
+  margin-bottom: 8px;
+  color: #bdbdbd;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.form input {
+  width: 100%;
+  height: 58px;
+  padding: 0 18px;
+  border: 1px solid rgba(245, 196, 0, 0.14);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.48);
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.25s ease;
+  box-shadow: inset 0 0 0 1px transparent;
+}
+
+.form input::placeholder {
+  color: #8d8d8d;
+}
+
+.form input:hover {
+  border-color: rgba(245, 196, 0, 0.28);
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.form input:focus {
+  border-color: rgba(245, 196, 0, 0.6);
+  background: rgba(0, 0, 0, 0.72);
+  box-shadow:
+    0 0 0 4px rgba(245, 196, 0, 0.08),
+    0 0 24px rgba(245, 196, 0, 0.1);
+}
+
+.form button {
+  width: 100%;
+  height: 58px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f5c400 0%, #ffdd4f 100%);
+  color: #111111;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 18px 30px rgba(245, 196, 0, 0.22);
+}
+
+.form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 24px 36px rgba(245, 196, 0, 0.28);
+}
+
+.form button:active {
+  transform: translateY(0);
+}
+
+.error {
+  width: min(470px, calc(100% - 40px));
+  margin: 0 auto 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 77, 77, 0.26);
+  border-radius: 16px;
+  background: rgba(85, 10, 10, 0.32);
+  color: #ffd3d3;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 24px 14px;
+  }
+
+  main::before {
+    background-size: 85vw;
+    opacity: 0.06;
+  }
+
+  .form form {
+
+    padding: 34px 22px 24px;
+    border-radius: 24px;
+  }
+
+  .form input,
+  .form button {
+    height: 54px;
+  }
 }

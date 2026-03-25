@@ -97,7 +97,6 @@ foreach($productos as $producto):
             </p>
         <?php endif; ?>
 
-        <p class="descripcion"><?= htmlspecialchars($producto['descripcion']); ?></p>
     </a>
 
 <?php

@@ -32,7 +32,6 @@ $total = obtenerTotalCarrito($conexion);
                             <div class="carrito-item-info">
                                 <span class="marca"><?php echo htmlspecialchars($item['marca']); ?></span>
                                 <h3><?php echo htmlspecialchars($item['nombre_producto']); ?></h3>
-                                <p class="descripcion"><?php echo htmlspecialchars($item['descripcion']); ?></p>
                                 <p class="precio-unitario"><?php echo number_format((float) $item['precio_unitario'], 2); ?> € / unidad</p>
                             </div>
 
@@ -55,7 +54,6 @@ $total = obtenerTotalCarrito($conexion);
                                 </form>
 
                                 <div class="subtotal">
-                                    <span>Subtotal</span>
                                     <strong><?php echo number_format((float) $item['subtotal'], 2); ?> €</strong>
                                 </div>
 
@@ -88,23 +86,6 @@ $total = obtenerTotalCarrito($conexion);
                 </div>
 
                 <div class="resumen-totales">
-                    <div class="resumen-linea">
-                        <span>Productos distintos</span>
-                        <strong><?php echo count($items); ?></strong>
-                    </div>
-
-                    <div class="resumen-linea">
-                        <span>Unidades totales</span>
-                        <strong>
-                            <?php
-                            $unidadesTotales = 0;
-                            foreach ($items as $item) {
-                                $unidadesTotales += (int) $item['cantidad'];
-                            }
-                            echo $unidadesTotales;
-                            ?>
-                        </strong>
-                    </div>
 
                     <div class="resumen-linea total">
                         <span>Total</span>

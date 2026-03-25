@@ -129,7 +129,7 @@ session_start();
         
     </ul>
 </nav>
-</header>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const menuToggle = document.getElementById('mobile-menu');
@@ -145,3 +145,5 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
+</header>

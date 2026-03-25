@@ -97,7 +97,7 @@ $descuento = $tieneOferta ? round((($producto['precio'] - $producto['precio_ofer
                 <?php endif; ?>
             <?php else: ?>
                 <p class="precio">
-                    <span class="precio-normal">$<?php echo number_format((float)$producto['precio'], 2); ?></span>
+                    <?php echo number_format((float)$producto['precio'], 2); ?>
                 </p>
             <?php endif; ?>
 
