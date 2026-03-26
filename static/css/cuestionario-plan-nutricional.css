@@ -1,108 +1,228 @@
-/* Estilo general */
-body {
-    background: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
 main {
-    max-width: 700px;
-    margin: 40px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    min-height: 100vh;
+    padding: 60px 20px 80px;
+    background:
+        radial-gradient(circle at top left, rgba(255, 193, 7, 0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255, 193, 7, 0.08), transparent 24%),
+        linear-gradient(180deg, #050505 0%, #0b0b0b 45%, #111111 100%);
+    color: #f5f5f5;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Título */
-h1 {
+main>* {
+    position: relative;
+    z-index: 1;
+}
+
+main h1 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 28px;
+    color: #ffc107;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 18px rgba(255, 193, 7, 0.18);
 }
 
-/* Texto introductorio */
-main div p {
-    line-height: 1.5;
-    color: #444;
+#informacion-cuestionario-plan-nutricional {
+    max-width: 950px;
+    margin: 0 auto 40px;
+    padding: 28px 30px;
+    background: linear-gradient(145deg, rgba(255, 193, 7, 0.08), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 193, 7, 0.22);
+    border-radius: 24px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
-/* Fieldsets */
+#informacion-cuestionario-plan-nutricional p {
+    margin: 0 0 14px;
+    color: #dddddd;
+    line-height: 1.7;
+}
+
+form {
+    max-width: 950px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+}
+
 fieldset {
-    margin-top: 25px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fafafa;
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    border-radius: 24px;
+    padding: 30px 24px 24px;
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.96), rgba(8, 8, 8, 0.98));
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.35);
 }
 
 legend {
-    font-weight: bold;
-    padding: 0 8px;
-    color: #333;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+    color: #111;
+    font-weight: 900;
+    font-size: 0.98rem;
+    text-transform: uppercase;
 }
 
-/* Inputs */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
 input[type="text"],
-input[type="mail"] {
+input[type="mail"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="password"] {
     width: 100%;
     box-sizing: border-box;
-    padding: 10px;
-    margin-top: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
+    margin: 0 0 18px;
+    padding: 15px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 193, 7, 0.18);
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+    font-size: 0.98rem;
+    outline: none;
+    transition: 0.25s;
 }
 
-input[type="radio"] {
+input:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.12);
+}
+
+fieldset input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 193, 7, 0.6);
+    border-radius: 50%;
     margin-right: 8px;
-    margin-top: 10px;
-}
-
-.btn-enviar {
-    margin-top: 20px;
-      width: 100%;
-  background-color: rgb(255, 196, 0);     
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.btn-enviar:hover {
-  background-color: rgb(255, 199, 15);     
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Espaciado entre opciones */
-fieldset br {
-    margin-bottom: 8px;
-}
-
-/* Botón */
-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    margin-top: 25px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    vertical-align: middle;
     cursor: pointer;
+    position: relative;
 }
 
-button:hover {
-    background: #45a049;
+fieldset input[type="radio"]:checked {
+    border-color: #ffc107;
 }
 
-#informacion-cuestionario-plan-nutricional{
-    font-size: smaller;
+fieldset input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #ffc107;
+}
+
+fieldset br {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* radio + texto alineados */
+fieldset {
+    line-height: 1.7;
+}
+
+fieldset input[type="radio"],
+fieldset input[type="radio"]+input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+fieldset input[type="radio"]+input[type="text"] {
+    width: auto;
+    min-width: 200px;
+    margin-left: 8px;
+}
+
+.btn-enviar,
+input[type="submit"] {
+    width: 100%;
+    max-width: 320px;
+    justify-self: center;
+    margin-top: 8px;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+    color: #111;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    box-shadow:
+        0 16px 30px rgba(255, 193, 7, 0.22);
+    transition: 0.25s;
+}
+
+.btn-enviar:hover,
+input[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 20px 34px rgba(255, 193, 7, 0.32);
+}
+
+
+.opcion-radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.opcion-otro {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.opcion-otro input[type="text"] {
+    flex: 1;
+    min-width: 220px;
+    margin: 0;
+}
+
+.input-error {
+    border-color: #ff4d4f !important;
+    box-shadow: 0 0 0 4px rgba(255, 77, 79, 0.12) !important;
+}
+
+.fieldset-error {
+    border-color: #ff4d4f !important;
+    box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.08) !important;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 36px 14px 60px;
+    }
+
+    fieldset {
+        padding: 26px 16px 20px;
+    }
+
+    fieldset input[type="radio"]+input[type="text"] {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 8px;
+        display: block;
+    }
+
+    .btn-enviar,
+    input[type="submit"] {
+        max-width: 100%;
+    }
 }

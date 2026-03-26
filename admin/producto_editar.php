@@ -1,4 +1,5 @@
 <?php 
+$css = "formularios-admin";
 include 'header_admin.php'; 
 
 $id = $_GET["id"];

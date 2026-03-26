@@ -127,6 +127,19 @@ function contarProductos($conexion, $id_categoria = "todas", $marca = "todas", $
     return (int) $stmt->fetchColumn();
 }
 
+function ofertaActiva($producto) {
+    if (empty($producto['precio_oferta'])) {
+        return false;
+    }
+
+    $ahora = time();
+
+    $inicioValido = empty($producto['oferta_inicio']) || strtotime($producto['oferta_inicio']) <= $ahora;
+    $finValido = empty($producto['oferta_fin']) || strtotime($producto['oferta_fin']) >= $ahora;
+
+    return $inicioValido && $finValido && $producto['precio_oferta'] < $producto['precio'];
+}
+
 function obtenerResenas($conexion, $idProducto){
     $sql = "SELECT r.puntuacion, r.comentario, r.fecha_resena, u.nombre
             FROM resenas r
@@ -170,7 +183,54 @@ function crearResena($conexion, $idProducto, $idUsuario, $puntuacion, $comentari
     }
 }
 
-/*Funciones para los pagos*/
+function obtenerUsuarioPorId(PDO $conexion, int $idUsuario): ?array
+{
+    $stmt = $conexion->prepare("
+        SELECT id_usuario, nombre, correo_electronico, telefono, direccion, ciudad, cp
+        FROM usuarios
+        WHERE id_usuario = ?
+        LIMIT 1
+    ");
+    $stmt->execute([$idUsuario]);
+
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $usuario ?: null;
+}
+
+function obtenerProductosEnOferta(PDO $conexion): array
+{
+    $sql = "SELECT *
+            FROM productos
+            WHERE precio_oferta IS NOT NULL";
+    $stmt = $conexion->prepare($sql);
+    try {
+        $stmt->execute();
+    } catch(Exception $e) {
+        echo "Error al obtener productos en oferta: " . $e->getMessage();
+    }
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function obtenerProductosRecomendados(PDO $conexion): array
+{
+    $sql = "SELECT *
+            FROM productos
+            WHERE recomendacion IS NOT NULL";
+    $stmt = $conexion->prepare($sql);
+    try {
+        $stmt->execute();
+    } catch(Exception $e) {
+        echo "Error al obtener productos en oferta: " . $e->getMessage();
+    }
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+/*Funciones para Carrito*/
 
 function carritoUsuarioActualId(): ?int
 {
@@ -422,6 +482,10 @@ function eliminarDetalleCarrito(PDO $conexion, int $idDetalle): void
     $del->execute([$idDetalle]);
 }
 
+
+
+/*Funciones para Checkout*/
+
 function guardarDatosCheckoutSesion(array $datos): void
 {
     $_SESSION['checkout_datos'] = [
@@ -641,21 +705,6 @@ function paypalAccessToken(): string
     }
 
     return $data['access_token'];
-}
-
-function obtenerUsuarioPorId(PDO $conexion, int $idUsuario): ?array
-{
-    $stmt = $conexion->prepare("
-        SELECT id_usuario, nombre, correo_electronico, telefono, direccion, ciudad, cp
-        FROM usuarios
-        WHERE id_usuario = ?
-        LIMIT 1
-    ");
-    $stmt->execute([$idUsuario]);
-
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    return $usuario ?: null;
 }
 
 function obtenerDatosCheckoutIniciales(PDO $conexion): array

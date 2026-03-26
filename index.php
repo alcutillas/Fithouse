@@ -49,51 +49,49 @@ require_once("templates/header.php");
     <div class="swiper swiper-productos">
       <div class="swiper-wrapper">
         <?php
-          // Aqui habra que hacer algo para que lo edite el admin
+      $productosEnOferta = obtenerProductosEnOferta($conexion);
+
+      $mostrar = "";
+      foreach ($productosEnOferta as $producto) {
+        
+        $descuento = round((($producto['precio'] - $producto['precio_oferta']) / $producto['precio']) * 100);
         ?>
-        <div class="swiper-slide">
-          <a class="product-card">
-            <div class="img-container">
-              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-            </div>
-            <h3>Nombre del Producto</h3>
-            <p class="precio">$99.00</p>
-            <p class="descripcion">Esta es la descripción</p>
-          </a>
-        </div>
+          <div class="swiper-slide">
+                  <a href="producto.php?id=<?= $producto['id_producto']; ?>" class="product-card">
+                  <div class="img-container">
+                      <img loading="lazy" src="./static/img/productos/<?= htmlspecialchars($producto['imagen']); ?>" alt="Imagen">
 
-        <div class="swiper-slide">
-          <a class="product-card">
-            <div class="img-container">
-              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-            </div>
-            <h3>Nombre del Producto</h3>
-            <p class="precio">$99.00</p>
-            <p class="descripcion">Esta es la descripción</p>
-          </a>
-        </div>
+                      <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
+                          <?php if (!empty($producto['oferta_fin'])): ?>
+                              <p class="oferta-fechas">
+                                  Hasta <?= date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
+                              </p>
+                          <?php endif; ?>
+                      <?php endif; ?>
+                  </div>
 
-        <div class="swiper-slide">
-          <a class="product-card">
-            <div class="img-container">
-              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-            </div>
-            <h3>Nombre del Producto</h3>
-            <p class="precio">$99.00</p>
-            <p class="descripcion">Esta es la descripción</p>
-          </a>
-        </div>
+                  <h3><?= htmlspecialchars($producto['nombre_producto']); ?></h3>
+                  <span><?= htmlspecialchars($producto['marca']); ?></span>
 
-        <div class="swiper-slide">
-          <a class="product-card">
-            <div class="img-container">
-              <img src="./static/img/fondo-index.jpg" alt="Producto 1">
-            </div>
-            <h3>Nombre del Producto</h3>
-            <p class="precio">$99.00</p>
-            <p class="descripcion">Esta es la descripción</p>
-          </a>
-        </div>
+                      <div class="precio precio-oferta-wrap">
+                          <div class="precio-col-izq">
+                              <span class="precio-original">$<?= number_format($producto['precio'], 2); ?></span>
+                          </div>
+                          <div class="precio-col-der">
+                              <span class="precio-oferta">$<?= number_format($producto['precio_oferta'], 2); ?></span>
+                          </div>
+                      </div>
+
+                      <span class="badge-oferta">-<?= $descuento; ?>%</span>
+                  
+                </a>
+          </div>
+      <?php
+      }
+
+        echo $mostrar;
+        
+      ?>
       </div>
 
       <div class="swiper-button-next ofertas-next"></div>
@@ -107,41 +105,45 @@ require_once("templates/header.php");
     <div class="swiper swiper-recomendaciones">
       <div class="swiper-wrapper">
 
-        <div class="swiper-slide">
-          <div class="recommendation-card">
-            <div class="card-image">
-              <img src="./static/img/fondo-index.jpg" alt="Producto">
-            </div>
-            <div class="card-content">
-              <h4>Nombre del producto</h4>
-              <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
-            </div>
-          </div>
-        </div>
+        <?php
+          $productosRecomendados = obtenerProductosRecomendados($conexion);
 
-        <div class="swiper-slide">
-          <div class="recommendation-card">
-            <div class="card-image">
-              <img src="./static/img/fondo-index.jpg" alt="Producto">
-            </div>
-            <div class="card-content">
-              <h4>Nombre del producto</h4>
-              <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
-            </div>
-          </div>
-        </div>
+          $mostrar = "";
+          foreach ($productosRecomendados as $producto) {
+            
+            $descuento = round((($producto['precio'] - $producto['precio_oferta']) / $producto['precio']) * 100);
+            ?>
+              <div class="swiper-slide">
+                      <a href="producto.php?id=<?= $producto['id_producto']; ?>" class="recommendation-card">
+                      <div class="img-container">
+                        <span class="badge-oferta">-<?= $descuento; ?>%</span>
 
-        <div class="swiper-slide">
-          <div class="recommendation-card">
-            <div class="card-image">
-              <img src="./static/img/fondo-index.jpg" alt="Producto">
-            </div>
-            <div class="card-content">
-              <h4>Nombre del producto</h4>
-              <p class="quote">Aquí se escribe la recomendación de por qué se utiliza</p>
-            </div>
-          </div>
-        </div>
+                          <img loading="lazy" src="./static/img/productos/<?= htmlspecialchars($producto['imagen']); ?>" alt="Imagen">
+
+                          <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
+                              <?php if (!empty($producto['oferta_fin'])): ?>
+                                  <p class="oferta-fechas">
+                                      Hasta <?= date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
+                                  </p>
+                              <?php endif; ?>
+                          <?php endif; ?>
+                      </div>
+                      <div class="info">
+                      <h3><?= htmlspecialchars($producto['nombre_producto']); ?></h3>
+                      <span class="marca"><?= htmlspecialchars($producto['marca']); ?></span>
+                      <p class="texto-recomendacion">
+                        <?= htmlspecialchars($producto['recomendacion']); ?>
+                      </p>
+                      </div>          
+                      
+                    </a>
+              </div>
+          <?php
+          }
+
+            echo $mostrar;
+            
+      ?>
 
       </div>
 
@@ -162,14 +164,20 @@ require_once("templates/header.php");
       prevEl: '.ofertas-prev',
     },
     breakpoints: {
-      640: {
+      600: {
         slidesPerView: 2,
+      },
+      800: {
+        slidesPerView: 3,
       },
       1024: {
         slidesPerView: 4,
       },
-      1440: {
+      1250: {
         slidesPerView: 5,
+      },
+      1440: {
+        slidesPerView: 6,
       }
     }
   });

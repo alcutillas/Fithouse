@@ -1,4 +1,5 @@
 <?php
+$css = "catalogo";
 require_once("header_admin.php");
 
 $categoria = $_GET['categoria'] ?? "todas";
@@ -17,18 +18,7 @@ $totalPaginas = (int) ceil($totalProductos / $porPagina);
 
 $productos = productos($conexion, $categoria, $marca, $precio, $busqueda, $porPagina, $offset);
 
-function ofertaActiva($producto) {
-    if (empty($producto['precio_oferta'])) {
-        return false;
-    }
 
-    $ahora = time();
-
-    $inicioValido = empty($producto['oferta_inicio']) || strtotime($producto['oferta_inicio']) <= $ahora;
-    $finValido = empty($producto['oferta_fin']) || strtotime($producto['oferta_fin']) >= $ahora;
-
-    return $inicioValido && $finValido && $producto['precio_oferta'] < $producto['precio'];
-}
 ?>
 
 <main id="catalogo">
@@ -77,10 +67,20 @@ function ofertaActiva($producto) {
                     </div>
                 </div>
 
+                
 <a href="../producto.php?id=<?= $producto['id_producto']; ?>" style="text-decoration: none; color: inherit;">
         <div class="img-container">
             <img loading="lazy" src="../static/img/productos/<?= htmlspecialchars($producto['imagen']); ?>" alt="Imagen">
+            <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
+                <?php if (!empty($producto['oferta_fin'])): ?>
+                    <p class="oferta-fechas">
+                        Hasta <?= date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
+                    </p>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
+
+        <a href="producto_recomendar.php?id=<?= $producto['id_producto']; ?>" class="btn-recomendar">Recomendar</a>
 
         <h3><?= htmlspecialchars($producto['nombre_producto']); ?></h3>
         <span><?= htmlspecialchars($producto['marca']); ?></span><br>
@@ -92,14 +92,6 @@ function ofertaActiva($producto) {
             </p>
 
             <span class="badge-oferta">-<?= $descuento; ?>%</span>
-
-            <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
-                <p class="oferta-fechas">
-                    <?php if (!empty($producto['oferta_fin'])): ?>
-                        Hasta <?= date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
-                    <?php endif; ?>
-                </p>
-            <?php endif; ?>
         <?php else: ?>
             <p class="precio">
                 <span class="precio-normal">$<?= number_format($precioFinal, 2); ?></span>
@@ -107,7 +99,9 @@ function ofertaActiva($producto) {
         <?php endif; ?>
 
         <p class="descripcion"><?= htmlspecialchars($producto['descripcion']); ?></p>
+        
     </a>
+
 </div>
         <?php endforeach; 
     } ?>

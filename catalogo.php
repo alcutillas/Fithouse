@@ -18,18 +18,6 @@ $totalPaginas = (int) ceil($totalProductos / $porPagina);
 
 $productos = productos($conexion, $categoria, $marca, $precio, $busqueda, $porPagina, $offset);
 
-function ofertaActiva($producto) {
-    if (empty($producto['precio_oferta'])) {
-        return false;
-    }
-
-    $ahora = time();
-
-    $inicioValido = empty($producto['oferta_inicio']) || strtotime($producto['oferta_inicio']) <= $ahora;
-    $finValido = empty($producto['oferta_fin']) || strtotime($producto['oferta_fin']) >= $ahora;
-
-    return $inicioValido && $finValido && $producto['precio_oferta'] < $producto['precio'];
-}
 ?>
 <main id="catalogo">
 
@@ -67,6 +55,14 @@ foreach($productos as $producto):
     <a href="producto.php?id=<?= $producto['id_producto']; ?>" class="product-card">
         <div class="img-container">
             <img loading="lazy" src="./static/img/productos/<?= htmlspecialchars($producto['imagen']); ?>" alt="Imagen">
+
+            <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
+                <?php if (!empty($producto['oferta_fin'])): ?>
+                    <p class="oferta-fechas">
+                        Hasta <?= date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
+                    </p>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
 
         <h3><?= htmlspecialchars($producto['nombre_producto']); ?></h3>
@@ -83,20 +79,11 @@ foreach($productos as $producto):
             </div>
 
             <span class="badge-oferta">-<?= $descuento; ?>%</span>
-
-            <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
-                <p class="oferta-fechas">
-                    <?php if (!empty($producto['oferta_fin'])): ?>
-                        Hasta <?= date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
-                    <?php endif; ?>
-                </p>
-            <?php endif; ?>
         <?php else: ?>
             <p class="precio">
                 <span class="precio-normal">$<?= number_format($precioFinal, 2); ?></span>
             </p>
         <?php endif; ?>
-
     </a>
 
 <?php

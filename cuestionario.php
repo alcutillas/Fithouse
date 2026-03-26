@@ -21,54 +21,258 @@ require_once("templates/header.php");
             datos
             personales y garantía de los derechos digitales.</p>
     </div>
-    <form >
-        <fieldset>
-            <legend>Información personal</legend>
-            <label for="correo">Correo electrónico</label><input type="mail" placeholder="Tu respuesta" required><br><br>
-            <label for="nombre">Nombre y Apellidos</label><input type="mail" placeholder="Tu respuesta" required><br><br>
-            <label for="edad">Edad</label><input type="mail" placeholder="Tu respuesta" required><br>
-        </fieldset>
-        <fieldset>
-            <legend>Objetivo principal</legend>
-            <input type="radio" value="perdergrasa" name="objetivo">Perder grasa<br>
-            <input type="radio" value="ganarmasamuscular" name="objetivo">Ganar masa muscular<br>
-            <input type="radio" value="mejorrendimientodeportivo" name="objetivo">Mejor rendimiento deportivo<br>
-            <input type="radio" value="vidasaludable" name="objetivo">Aprender a llevar una vida mas saludable<br>
-            <input type="radio" value="otro" name="objetivo">Otro<input type="text" name="objetivo">
-        </fieldset>
-        <fieldset>
-            <legend>¿Practicas deporte ahora mismo?</legend>
-            <input type="radio" value="no" name="deportePracticado">No entreno<br>
-            <input type="radio" value="gym" name="deportePracticado">Gym<br>
-            <input type="radio" value="resistencia" name="deportePracticado">Deporte de resistencia<br>
-            <input type="radio" value="equipo" name="deportePracticado">Deporte en equipo<br>
-            <input type="radio" value="otro" name="deportePracticado">Otro<input type="text">
-        </fieldset>
-        <fieldset>
-            <legend>¿Has seguido alguna vez un plan nutricional?</legend>
-            <input type="radio" value="no" name="seguidoPlan">No<br>
-            <input type="radio" value="solo" name="seguidoPlan">Si, por mi cuenta<br>
-            <input type="radio" value="profecional" name="seguidoPlan">Si, con un profesional<br>
-        </fieldset>
-        <fieldset>
-            <legend>¿Como te gustaría llevar el seguimiento nutricional?</legend>
-            <input type="radio" value="sencillo" name="tipoSeguimiento">Practico y sencillo, pautas claras y adaptadas a mi vida, avanzando poco a poco sin exigencia desmedida.<br>
-            <input type="radio" value="estructurado" name="tipoSeguimiento">Seguimiento mas estructurado, con revisiones periodicas (presenciales u online) para ir ajustando el plan y progresar de forma constante<br>
-            <input type="radio" value="exigente" name="tipoSeguimiento">Seguimiento mas exigente, con control frecuente, registro de datos y alto compromiso para lograr objetivos lo antes posible<br>
-            <input type="radio" value="asesoramiento" name="tipoSeguimiento">No lo tengo claro, necesito asesoramiento<br>
-        </fieldset>
-        <fieldset>
-            <legend>¿Tienes alguna preferencia sobre quien te atienda?</legend>
-            <input type="radio" value="daigual" name="preferencia">Me da igual<br>
-            <input type="radio" value="mujer" name="preferencia">Prefiero una mujer<br>
-            <input type="radio" value="hombre" name="preferencia">Prefiero un hombre<br>
-        </fieldset>
-        <fieldset>
-            <legend>¿Que te gustaría conseguir con nuestra ayuda nutricional?</legend>
-        <input type="text" placeholder="Tu respuesta">
-        </fieldset>
-        <input type="submit" class="btn-enviar" value="Enviar">
-    </form>
+    <form id="cuestionario-nutricion" novalidate>
+    <fieldset>
+        <legend>Información personal</legend>
+
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" placeholder="Tu respuesta" required>
+
+        <label for="nombre">Nombre y apellidos</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu respuesta" minlength="3" maxlength="100" required>
+
+        <label for="edad">Edad</label>
+        <input type="number" id="edad" name="edad" placeholder="Tu respuesta" min="10" max="100" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Objetivo principal</legend>
+
+        <label class="opcion-radio">
+            <input type="radio" value="perdergrasa" name="objetivo" required>
+            <span>Perder grasa</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="ganarmasamuscular" name="objetivo">
+            <span>Ganar masa muscular</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="mejorrendimientodeportivo" name="objetivo">
+            <span>Mejor rendimiento deportivo</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="vidasaludable" name="objetivo">
+            <span>Aprender a llevar una vida más saludable</span>
+        </label>
+
+        <div class="opcion-otro">
+            <label class="opcion-radio">
+                <input type="radio" value="otro" name="objetivo" id="objetivo_otro_radio">
+                <span>Otro</span>
+            </label>
+            <input type="text" name="objetivo_otro" id="objetivo_otro_texto" placeholder="Especifica cuál">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>¿Practicas deporte ahora mismo?</legend>
+
+        <label class="opcion-radio">
+            <input type="radio" value="no" name="deportePracticado" required>
+            <span>No entreno</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="gym" name="deportePracticado">
+            <span>Gym</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="resistencia" name="deportePracticado">
+            <span>Deporte de resistencia</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="equipo" name="deportePracticado">
+            <span>Deporte en equipo</span>
+        </label>
+
+        <div class="opcion-otro">
+            <label class="opcion-radio">
+                <input type="radio" value="otro" name="deportePracticado" id="deporte_otro_radio">
+                <span>Otro</span>
+            </label>
+            <input type="text" name="deporte_otro" id="deporte_otro_texto" placeholder="Especifica cuál">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>¿Has seguido alguna vez un plan nutricional?</legend>
+
+        <label class="opcion-radio">
+            <input type="radio" value="no" name="seguidoPlan" required>
+            <span>No</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="solo" name="seguidoPlan">
+            <span>Sí, por mi cuenta</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="profesional" name="seguidoPlan">
+            <span>Sí, con un profesional</span>
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>¿Cómo te gustaría llevar el seguimiento nutricional?</legend>
+
+        <label class="opcion-radio">
+            <input type="radio" value="sencillo" name="tipoSeguimiento" required>
+            <span>Práctico y sencillo, pautas claras y adaptadas a mi vida, avanzando poco a poco sin exigencia desmedida.</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="estructurado" name="tipoSeguimiento">
+            <span>Seguimiento más estructurado, con revisiones periódicas (presenciales u online) para ir ajustando el plan y progresar de forma constante.</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="exigente" name="tipoSeguimiento">
+            <span>Seguimiento más exigente, con control frecuente, registro de datos y alto compromiso para lograr objetivos lo antes posible.</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="asesoramiento" name="tipoSeguimiento">
+            <span>No lo tengo claro, necesito asesoramiento.</span>
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>¿Tienes alguna preferencia sobre quien te atienda?</legend>
+
+        <label class="opcion-radio">
+            <input type="radio" value="daigual" name="preferencia" required>
+            <span>Me da igual</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="mujer" name="preferencia">
+            <span>Prefiero una mujer</span>
+        </label>
+
+        <label class="opcion-radio">
+            <input type="radio" value="hombre" name="preferencia">
+            <span>Prefiero un hombre</span>
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>¿Qué te gustaría conseguir con nuestra ayuda nutricional?</legend>
+        <input type="text" name="ayuda_nutricional" placeholder="Tu respuesta" minlength="5" maxlength="300" required>
+    </fieldset>
+
+    <input type="submit" class="btn-enviar" value="Enviar">
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("cuestionario-nutricion");
+
+    function configurarOtro(radioId, inputId) {
+        const radio = document.getElementById(radioId);
+        const input = document.getElementById(inputId);
+        const grupo = document.querySelectorAll(`input[name="${radio.name}"]`);
+
+        function actualizarEstado() {
+            if (radio.checked) {
+                input.disabled = false;
+                input.required = true;
+            } else {
+                input.disabled = true;
+                input.required = false;
+                input.value = "";
+                input.classList.remove("input-error");
+            }
+        }
+
+        input.addEventListener("input", () => {
+            if (input.value.trim() !== "") {
+                radio.checked = true;
+            }
+            actualizarEstado();
+        });
+
+        input.addEventListener("focus", () => {
+            radio.checked = true;
+            actualizarEstado();
+        });
+
+        grupo.forEach(opcion => {
+            opcion.addEventListener("change", actualizarEstado);
+        });
+
+        actualizarEstado();
+    }
+
+    configurarOtro("objetivo_otro_radio", "objetivo_otro_texto");
+    configurarOtro("deporte_otro_radio", "deporte_otro_texto");
+
+    const campos = form.querySelectorAll("input[required]");
+
+    function marcarError(campo) {
+        campo.classList.add("input-error");
+        campo.setAttribute("aria-invalid", "true");
+    }
+
+    function quitarError(campo) {
+        campo.classList.remove("input-error");
+        campo.removeAttribute("aria-invalid");
+    }
+
+    campos.forEach(campo => {
+        campo.addEventListener("input", () => quitarError(campo));
+        campo.addEventListener("change", () => quitarError(campo));
+        campo.addEventListener("invalid", (e) => {
+            e.preventDefault();
+            marcarError(campo);
+        });
+    });
+
+    form.addEventListener("submit", (e) => {
+        let primerInvalido = null;
+
+        const radiosRequeridos = ["objetivo", "deportePracticado", "seguidoPlan", "tipoSeguimiento", "preferencia"];
+
+        radiosRequeridos.forEach(nombre => {
+            const opciones = form.querySelectorAll(`input[name="${nombre}"]`);
+            const marcada = form.querySelector(`input[name="${nombre}"]:checked`);
+            const fieldset = opciones[0].closest("fieldset");
+
+            fieldset.classList.remove("fieldset-error");
+
+            if (!marcada) {
+                e.preventDefault();
+                fieldset.classList.add("fieldset-error");
+                if (!primerInvalido) primerInvalido = opciones[0];
+            }
+        });
+
+        if (!form.checkValidity()) {
+            e.preventDefault();
+
+            const invalidos = form.querySelectorAll(":invalid");
+            invalidos.forEach(campo => marcarError(campo));
+
+            if (!primerInvalido && invalidos.length > 0) {
+                primerInvalido = invalidos[0];
+            }
+        }
+
+        if (primerInvalido) {
+            primerInvalido.focus();
+            primerInvalido.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    });
+});
+</script>
 </main>
 
 <?php

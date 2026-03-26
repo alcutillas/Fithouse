@@ -18,19 +18,6 @@ if (!$producto || !isset($producto[0])) {
 
 $producto = $producto[0];
 
-function ofertaActiva($producto) {
-    if (empty($producto['precio_oferta'])) {
-        return false;
-    }
-
-    $ahora = time();
-
-    $inicioValido = empty($producto['oferta_inicio']) || strtotime($producto['oferta_inicio']) <= $ahora;
-    $finValido = empty($producto['oferta_fin']) || strtotime($producto['oferta_fin']) >= $ahora;
-
-    return $inicioValido && $finValido && $producto['precio_oferta'] < $producto['precio'];
-}
-
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["form_tipo"]) && $_POST["form_tipo"] === "resena") {
     if (!isset($_SESSION['id_usuario'])) {
         header("Location: iniciarsesion.php");
@@ -67,9 +54,21 @@ $descuento = $tieneOferta ? round((($producto['precio'] - $producto['precio_ofer
                     alt="<?php echo htmlspecialchars($producto['nombre_producto']); ?>"
                 >
             <?php endif; ?>
+            
         </div>
 
         <div class="producto-info">
+            <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
+                    <p class="oferta-fechas">
+                        Oferta
+                        <?php if (!empty($producto['oferta_inicio'])): ?>
+                            desde <?php echo date('d/m/Y H:i', strtotime($producto['oferta_inicio'])); ?>
+                        <?php endif; ?>
+                        <?php if (!empty($producto['oferta_fin'])): ?>
+                            hasta <?php echo date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
+                        <?php endif; ?>
+                    </p>
+                <?php endif; ?>
             <span class="marca"><?php echo htmlspecialchars($producto['marca']); ?></span>
             <h1><?php echo htmlspecialchars($producto['nombre_producto']); ?></h1>
 
@@ -84,17 +83,7 @@ $descuento = $tieneOferta ? round((($producto['precio'] - $producto['precio_ofer
                     <span class="badge-oferta">-<?php echo $descuento; ?>%</span>
                 </p>
 
-                <?php if (!empty($producto['oferta_inicio']) || !empty($producto['oferta_fin'])): ?>
-                    <p class="oferta-fechas">
-                        Oferta
-                        <?php if (!empty($producto['oferta_inicio'])): ?>
-                            desde <?php echo date('d/m/Y H:i', strtotime($producto['oferta_inicio'])); ?>
-                        <?php endif; ?>
-                        <?php if (!empty($producto['oferta_fin'])): ?>
-                            hasta <?php echo date('d/m/Y H:i', strtotime($producto['oferta_fin'])); ?>
-                        <?php endif; ?>
-                    </p>
-                <?php endif; ?>
+                
             <?php else: ?>
                 <p class="precio">
                     <?php echo number_format((float)$producto['precio'], 2); ?>
@@ -139,8 +128,6 @@ $descuento = $tieneOferta ? round((($producto['precio'] - $producto['precio_ofer
     <section class="resenas-wrap">
         <h2>Reseñas del producto</h2>
 
-        <div class="form-resena">
-            <h3>Deja tu reseña</h3>
 
             <?php if (!empty($errorResena)): ?>
                 <p class="error-resena"><?php echo htmlspecialchars($errorResena); ?></p>
@@ -167,7 +154,6 @@ $descuento = $tieneOferta ? round((($producto['precio'] - $producto['precio_ofer
 
                 <button type="submit" class="btn-principal">Enviar reseña</button>
             </form>
-        </div>
 
         <div class="lista-resenas">
             <?php if (empty($resenas)): ?>

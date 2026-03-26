@@ -1,6 +1,6 @@
-<?php 
+<?php
+$css = "formularios-admin"; 
 include 'header_admin.php'; 
-require_once '../conexion.php';
 
 if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
     header("Location: administrador.php");

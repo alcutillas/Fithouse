@@ -1,13 +1,15 @@
-<?php 
+<?php
 $css = "registro";
 require_once("templates/header.php");
+
+$error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim(strtolower($_POST['email'] ?? ''));
     $pass  = $_POST['password'] ?? '';
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<p class='error'>Correo electrónico no válido</p>";
+        $error = "Correo electrónico no válido";
     } else {
         $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE LOWER(correo_electronico) = :email LIMIT 1");
         $stmt->execute([':email' => $email]);
@@ -26,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 exit();
             } else {
-                echo "<p class='error'>Contraseña incorrecta</p>";
+                $error = "Contraseña incorrecta";
             }
         } else {
-            echo "<p class='error'>El correo no está registrado</p>";
+            $error = "El correo no está registrado";
         }
     }
 }
@@ -37,14 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <main>
     <div class="particulas-neon"></div>
-<div class="logo-neon"></div>
-<div class="trazo-neon-1"></div>
-<div class="trazo-neon-2"></div>
-<div class="trazo-neon-3"></div>
+    <div class="logo-neon"></div>
+    <div class="trazo-neon-1"></div>
+    <div class="trazo-neon-2"></div>
+    <div class="trazo-neon-3"></div>
+
     <div class="form">
         <form method="post" action="">
             <input type="email" placeholder="Email" name="email" required>
             <input type="password" name="password" placeholder="Contraseña" required>
+
+            <?php if ($error !== ""): ?>
+                <p class="error"><?php echo $error; ?></p>
+            <?php endif; ?>
+
             <button type="submit">Iniciar Sesión</button>
         </form>
     </div>

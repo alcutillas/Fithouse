@@ -21,8 +21,24 @@ if($_SESSION["rol"] != "admin")
     <link rel="stylesheet" href="../static/fontawesome/css/solid.min.css">
     <link rel="stylesheet" href="../static/fontawesome/css/brands.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/catalogo.css">
-    <link rel="stylesheet" href="../static/css/formularios-admin.css">
+
+    <?php
+    if (isset($css)) {
+       if($css == "catalogo"){
+        ?>
+        <link rel="stylesheet" href="../static/css/catalogo.css">
+    <?php
+    }else if($css == "formularios-admin"){
+        ?>
+        <link rel="stylesheet" href="../static/css/formularios-admin.css">
+    <?php
+    }else if($css == "producto"){
+        ?>
+        <link rel="stylesheet" href="../static/css/producto.css">
+    <?php
+    }
+    }
+    ?>
 </head>
 
 <body>
