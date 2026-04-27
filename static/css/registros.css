@@ -15,177 +15,7 @@ main {
   align-items: center;
 }
 
-/* niebla base */
-main::before {
-  content: "";
-  position: absolute;
-  inset: -12%;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(circle at 18% 58%, rgba(255, 193, 7, 0.12), transparent 14%),
-    radial-gradient(circle at 36% 30%, rgba(255, 193, 7, 0.08), transparent 16%),
-    radial-gradient(circle at 58% 48%, rgba(255, 193, 7, 0.09), transparent 18%),
-    radial-gradient(circle at 82% 34%, rgba(255, 193, 7, 0.08), transparent 14%),
-    radial-gradient(circle at 88% 74%, rgba(255, 193, 7, 0.07), transparent 16%);
-  filter: blur(58px);
-  opacity: 0.9;
-  animation: nieblaFlotante 18s ease-in-out infinite alternate;
-}
 
-/* recorrido angular, roto y conectado */
-main::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    linear-gradient(122deg,
-      transparent 0 47.8%,
-      rgba(255, 193, 7, 0.98) 48.3%,
-      rgba(255, 193, 7, 0.15) 48.9%,
-      transparent 49.6%) no-repeat,
-
-    linear-gradient(36deg,
-      transparent 0 47.9%,
-      rgba(255, 193, 7, 0.94) 48.4%,
-      rgba(255, 193, 7, 0.14) 49%,
-      transparent 49.7%) no-repeat,
-
-    linear-gradient(148deg,
-      transparent 0 47.6%,
-      rgba(255, 193, 7, 0.92) 48.2%,
-      rgba(255, 193, 7, 0.13) 48.8%,
-      transparent 49.5%) no-repeat,
-
-    linear-gradient(70deg,
-      transparent 0 47.8%,
-      rgba(255, 193, 7, 0.96) 48.4%,
-      rgba(255, 193, 7, 0.13) 49%,
-      transparent 49.8%) no-repeat,
-
-    linear-gradient(160deg,
-      transparent 0 47.7%,
-      rgba(255, 193, 7, 0.88) 48.2%,
-      rgba(255, 193, 7, 0.12) 48.8%,
-      transparent 49.6%) no-repeat,
-
-    linear-gradient(22deg,
-      transparent 0 47.8%,
-      rgba(255, 193, 7, 0.9) 48.3%,
-      rgba(255, 193, 7, 0.11) 48.9%,
-      transparent 49.7%) no-repeat,
-
-    linear-gradient(122deg,
-      transparent 0 48.5%,
-      rgba(255, 193, 7, 0.45) 48.9%,
-      transparent 49.4%) no-repeat,
-    linear-gradient(36deg,
-      transparent 0 48.5%,
-      rgba(255, 193, 7, 0.42) 48.9%,
-      transparent 49.4%) no-repeat,
-    linear-gradient(148deg,
-      transparent 0 48.5%,
-      rgba(255, 193, 7, 0.4) 48.9%,
-      transparent 49.4%) no-repeat,
-
-    linear-gradient(rgba(255, 193, 7, 0.96), rgba(255, 193, 7, 0.96)) no-repeat,
-    linear-gradient(rgba(255, 193, 7, 0.92), rgba(255, 193, 7, 0.92)) no-repeat,
-    linear-gradient(rgba(255, 193, 7, 0.9), rgba(255, 193, 7, 0.9)) no-repeat,
-    linear-gradient(rgba(255, 193, 7, 0.88), rgba(255, 193, 7, 0.88)) no-repeat,
-    linear-gradient(rgba(255, 193, 7, 0.95), rgba(255, 193, 7, 0.95)) no-repeat,
-
-    radial-gradient(circle at 22% 52%, rgba(255, 193, 7, 0.16), transparent 18%) no-repeat,
-    radial-gradient(circle at 52% 42%, rgba(255, 193, 7, 0.14), transparent 18%) no-repeat,
-    radial-gradient(circle at 78% 60%, rgba(255, 193, 7, 0.16), transparent 18%) no-repeat;
-
-  background-size:
-    520px 520px,
-    440px 440px,
-    480px 480px,
-    460px 460px,
-    420px 420px,
-    500px 500px,
-
-    520px 520px,
-    440px 440px,
-    480px 480px,
-
-    14px 14px,
-    16px 16px,
-    12px 12px,
-    14px 14px,
-    16px 16px,
-
-    260px 260px,
-    300px 300px,
-    280px 280px;
-
-  background-position:
-    8% 56%,
-    27% 28%,
-    43% 46%,
-    61% 24%,
-    69% 62%,
-    84% 38%,
-
-    10% 60%,
-    29% 31%,
-    45% 49%,
-
-    24% 44%,
-    41% 33%,
-    58% 51%,
-    73% 40%,
-    86% 55%,
-
-    22% 52%,
-    52% 42%,
-    78% 60%;
-
-  filter:
-    drop-shadow(0 0 5px rgba(255, 193, 7, 0.45)) drop-shadow(0 0 16px rgba(255, 193, 7, 0.18));
-  opacity: 0.95;
-  animation: lineasRespiran 7s ease-in-out infinite alternate;
-}
-
-/* capa de partículas */
-.particulas-neon,
-.particulas-neon::before,
-.particulas-neon::after {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  content: "";
-}
-
-.particulas-neon {
-  z-index: 2;
-  background:
-    radial-gradient(circle, rgba(255, 193, 7, 0.95) 0 2px, transparent 3px) 8% 16% / 180px 180px repeat,
-    radial-gradient(circle, rgba(255, 193, 7, 0.75) 0 1.5px, transparent 3px) 22% 74% / 220px 220px repeat,
-    radial-gradient(circle, rgba(255, 193, 7, 0.55) 0 2px, transparent 3px) 64% 28% / 200px 200px repeat;
-  opacity: 0.45;
-  filter: blur(0.3px) drop-shadow(0 0 6px rgba(255, 193, 7, 0.3));
-  animation: particulasLentas 24s linear infinite;
-}
-
-.particulas-neon::before {
-  background:
-    radial-gradient(circle, rgba(255, 193, 7, 0.8) 0 2px, transparent 3px) 12% 48% / 240px 240px repeat,
-    radial-gradient(circle, rgba(255, 193, 7, 0.55) 0 1.5px, transparent 3px) 72% 14% / 190px 190px repeat;
-  opacity: 0.4;
-  animation: particulasRapidas 14s linear infinite;
-}
-
-.particulas-neon::after {
-  background:
-    radial-gradient(circle, rgba(255, 193, 7, 0.7) 0 2px, transparent 3px) 18% 26% / 260px 260px repeat,
-    radial-gradient(circle, rgba(255, 193, 7, 0.5) 0 1.5px, transparent 3px) 82% 76% / 210px 210px repeat;
-  opacity: 0.28;
-  animation: particulasVerticales 20s linear infinite;
-}
 
 /* logo metido en una pieza angular */
 .logo-neon {
@@ -239,7 +69,9 @@ main::after {
 /* detalles rectos extra */
 .trazo-neon-1,
 .trazo-neon-2,
-.trazo-neon-3 {
+.trazo-neon-3,
+.trazo-neon-4,
+.trazo-neon-5 {
   position: absolute;
   pointer-events: none;
   z-index: 2;
@@ -274,6 +106,25 @@ main::after {
   left: 70%;
   transform: rotate(12deg);
   animation: trazoVivo3 7.5s ease-in-out infinite;
+}
+
+
+.trazo-neon-4 {
+  width: 280px;
+  height: 2px;
+  top: 71%;
+  left: 66%;
+  transform: rotate(-64deg);
+  animation: trazoVivo2 8s ease-in-out infinite;
+}
+
+.trazo-neon-5 {
+  width: 220px;
+  height: 3px;
+  top: 71%;
+  left: 6%;
+  transform: rotate(-174deg);
+  animation: trazoVivo2 8s ease-in-out infinite;
 }
 
 main>* {

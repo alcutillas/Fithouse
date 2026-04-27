@@ -43,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="trazo-neon-1"></div>
     <div class="trazo-neon-2"></div>
     <div class="trazo-neon-3"></div>
+    <div class="trazo-neon-4"></div>
+    <div class="trazo-neon-5"></div>
 
     <div class="form">
         <form method="post" action="">

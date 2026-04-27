@@ -19,14 +19,12 @@ session_start();
 
     <link rel="canonical" href="https://fithousesanvi.es/">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Tienda de Suplementación Deportiva">
     <meta property="og:description" content="Proteína, creatina y suplementos al mejor precio.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fithousesanvi.es/">
     <meta property="og:image" content="https://fithousesanvi.es/static/img/og-image.jpg">
-
-    <!-- Twitter -->
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tienda de Suplementación Deportiva">
     <meta name="twitter:description" content="Compra suplementos deportivos online.">

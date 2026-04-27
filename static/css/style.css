@@ -1,34 +1,10 @@
 @font-face {
     font-family: 'DM Sans';
     src: url('../../fonts/DM_Sans/dm-sans-regular.woff2') format('woff2');
-    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'DM Sans';
-    src: url('../../fonts/DM_Sans/dm-sans-semibold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'DM Sans';
-    src: url('../../fonts/DM_Sans/dm-sans-bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'DM Sans';
-    src: url('../../fonts/DM_Sans/dm-sans-medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
 
 * {
     margin: 0;
@@ -84,11 +60,11 @@ header {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    height: 100%;
-    color: rgb(0, 0, 0);
+    height: 50px;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .nav-menu li a::after,
@@ -119,19 +95,7 @@ header {
     position: relative;
 }
 
-.nav-menu li a::after {
-    content: "";
-    position: absolute;
-    left: 18px;
-    right: 18px;
-    bottom: 8px;
-    height: 2px;
-    background: #000;
 
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s ease;
-}
 
 
 .nav-menu .submenu {
@@ -201,14 +165,15 @@ header {
 
     .dropdown:hover .submenu {
         display: none;
+        z-index: 2000;
     }
 
     .nav-menu li.dropdown {
         display: block;
+        z-index: 2000;
     }
 
     .nav-menu .submenu {
-        z-index: 1000;
         width: 100%;
     }
 
@@ -251,7 +216,6 @@ header {
     }
 
     .submenu:hover {
-        z-index: 100;
         display: block;
     }
 
@@ -649,7 +613,8 @@ h2 {
 }
 
 .swiper-recomendaciones {
-    height: auto;
+    
+    max-width: 900px;
 }
 
 
@@ -857,7 +822,7 @@ h2 {
     box-shadow: 0 0 12px rgba(245, 196, 0, 0.45);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1048px) {
     .home-sliders {
         padding: 50px 4%;
     }
