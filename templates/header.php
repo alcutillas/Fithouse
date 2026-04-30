@@ -75,6 +75,10 @@ session_start();
         ?>
         <link rel="stylesheet" href="static/css/checkout.css">
     <?php
+    }else if($css == "gracias"){
+        ?>
+        <link rel="stylesheet" href="static/css/gracias.css">
+    <?php
     }}
     ?>
 

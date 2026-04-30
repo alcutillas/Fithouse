@@ -15,7 +15,6 @@ require_once("templates/header.php");
     </div>
     <section id="cuerpo-presentacion">
         <div>
-            <h2>Marcas con las que trabajamos</h2>
             <div class="swiper">
             <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="static/img/carrusel-marcas-index/amix.png"></div>
@@ -35,10 +34,29 @@ require_once("templates/header.php");
     </div>
     <script>
       const swiper = new Swiper('.swiper', {
+        slidesPerView: 6,
+        spaceBetween: 30,
         loop: true,
-        autoplay: { delay: 2000 },
-        pagination: { el: '.swiper-pagination' }
+        breakpoints: {
+          600: {
+            slidesPerView: 2,
+          },
+          800: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+          1250: {
+            slidesPerView: 5,
+          },
+          1440: {
+            slidesPerView: 6,
+          }
+        },
+        autoplay: { delay: 200 },
       });
+
     </script>
         </div>
         <section class="home-sliders">
@@ -179,6 +197,10 @@ require_once("templates/header.php");
       1440: {
         slidesPerView: 6,
       }
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
     }
   });
 

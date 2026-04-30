@@ -21,7 +21,7 @@ require_once("templates/header.php");
             datos
             personales y garantía de los derechos digitales.</p>
     </div>
-    <form id="cuestionario-nutricion" novalidate>
+    <form id="cuestionario-nutricion" method="POST" action="acciones/enviarCuestionario.php" novalidate>
     <fieldset>
         <legend>Información personal</legend>
 

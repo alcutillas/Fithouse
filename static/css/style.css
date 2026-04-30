@@ -581,19 +581,71 @@ footer td {
 }
 
 /*===================Main-Presentacion========================*/
-
 #cuerpo-presentacion {
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
+    background: linear-gradient(135deg, #050505 0%, #0f0f0f 60%, #1a1400 100%);
+    padding: 0px 0px;
+    color: #fff;
+}
+
+/* CONTENEDOR MARCAS */
+#cuerpo-presentacion > div:first-child {
+    width: 100%;
+    background: rgba(10, 10, 10, 0.92);
+    border-top: 1px solid rgba(255, 193, 7, 0.35);
+    border-bottom: 1px solid rgba(255, 193, 7, 0.35);
+}
+
+/* SECCIONES (OFERTAS / RECOMENDACIONES) */
+.slider-section {
+    max-width: 1300px;
+    margin: 0 auto 90px;
+    padding: 40px 25px;
+    border-radius: 22px;
+    background: rgba(10, 10, 10, 0.92);
+    border: 1px solid rgba(255, 193, 7, 0.35);
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.10);
+}
+
+/* TITULOS */
+#cuerpo-presentacion h2,
+.section-title {
+    color: #ffc107;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
     text-align: center;
-    gap: 20px;
+    margin-bottom: 40px;
 }
 
-h2 {
-    margin: 20px;
+/* PAGINACIÓN SWIPER (solo color) */
+.swiper-pagination-bullet {
+    background: #777;
+    opacity: 1;
 }
 
+.swiper-pagination-bullet-active {
+    background: #ffc107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.8);
+}
+
+/* FLECHAS */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ffc107;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    #cuerpo-presentacion {
+        padding: 60px 15px;
+    }
+
+    #cuerpo-presentacion > div:first-child,
+    .slider-section {
+        padding: 30px 15px;
+    }
+}
 
 /*================================Carruseles==========================*/
 
@@ -616,9 +668,6 @@ h2 {
     
     max-width: 900px;
 }
-
-
-
 
 .recommendation-card {
     display: flex;
